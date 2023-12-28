@@ -1,0 +1,12 @@
+[
+    {
+        "symbol": "H",
+        "radius": 0.25,
+        "covalent radius": 0.25
+    },
+    {
+        "symbol": "C",
+        "radius": 0.5,
+        "covalent radius": 0.7
+    }
+]
