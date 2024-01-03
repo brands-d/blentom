@@ -168,7 +168,6 @@ blender
 .DS_Store
 
 # VSCode
-auto_load.py
 .vscode
 
 # Custom
