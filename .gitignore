@@ -163,3 +163,10 @@ cython_debug/
 *.blend*
 *.png
 assets
+
+# Apple
+.DS_Store
+
+# Example files
+*.cube
+*.pdb

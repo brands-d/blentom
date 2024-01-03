@@ -22,6 +22,17 @@
         }
     },
     {
+        "Name": "X",
+        "Properties": {
+            "Base Color": [
+                0,
+                0,
+                0,
+                1
+            ]
+        }
+    },
+    {
         "Name": "Bond",
         "Properties": {
             "Base Color": [
@@ -67,6 +78,26 @@
                 0,
                 0,
                 1,
+                1
+            ],
+            "Emission Strength": 0.5
+        }
+    },
+    {
+        "Name": "Charge Density",
+        "Properties": {
+            "Base Color": [
+                0.5,
+                0.4,
+                0.1,
+                1
+            ],
+            "Alpha": 0.8,
+            "Transmission Weight": 0.5,
+            "Emission Color": [
+                0.5,
+                0.4,
+                0.1,
                 1
             ],
             "Emission Strength": 0.5

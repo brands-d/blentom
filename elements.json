@@ -8,5 +8,10 @@
         "symbol": "C",
         "radius": 0.5,
         "covalent radius": 0.7
+    },
+    {
+        "symbol": "X",
+        "radius": 1,
+        "covalent radius": 1
     }
 ]

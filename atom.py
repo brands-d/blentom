@@ -1,12 +1,15 @@
-import bpy  # type: ignore
-from mathutils import Vector  # type: ignore
-from ase.io import read
-
 from itertools import combinations
+from pathlib import Path
+
+import bpy  # type: ignore
+from ase.io import read
+from ase.calculators.vasp import VaspChargeDensity
+from mathutils import Vector  # type: ignore
+
 from blentom.base import BlenderObject  # type: ignore
+from blentom.bond import Bond  # type: ignore
 from blentom.material import Material  # type: ignore
 from blentom.periodic_table import PeriodicTable  # type: ignore
-from blentom.bond import Bond  # type: ignore
 
 
 class Atom(BlenderObject):
@@ -15,7 +18,10 @@ class Atom(BlenderObject):
     ):
         self.cell = cell
         self.symbol = symbol
-        element = PeriodicTable[symbol]
+        try:
+            element = PeriodicTable[symbol]
+        except KeyError:
+            element = PeriodicTable["X"]
         self.covalent_radius = element.covalent_radius
         radius = element.radius
 
@@ -50,8 +56,22 @@ class Atoms:
                     self.bonds.append(Bond(atom_i, atom_j))
 
     @classmethod
-    def read(cls, filename):
-        return Atoms(read(filename))
+    def read(cls, filename, format="auto"):
+        if not isinstance(filename, Path):
+            filename = Path(filename)
+
+        if format.lower() in "auto":
+            if filename.name[:6] in ("POSCAR", "CONTCAR"):
+                format = "vasp"
+            elif filename.name[:6] in ("CHGCAR",):
+                format = "chgcar"
+            else:
+                format = "default"
+
+        if format.lower() in ("chgcar",):
+            return Atoms(VaspChargeDensity(filename).atoms[-1])
+        else:
+            return Atoms(read(filename))
 
     @property
     def positions(self):

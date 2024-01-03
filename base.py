@@ -23,6 +23,7 @@ class BlenderObject:
         self.blender_object.rotation_euler = Euler(
             [radians(angle) for angle in rotation], "XYZ"
         )
+        bpy.ops.object.transform_apply()
 
     @property
     def material(self):
@@ -51,6 +52,7 @@ class BlenderObject:
         self.blender_object.matrix_world = (
             shift @ rotation @ shift.inverted() @ original
         )
+        bpy.ops.object.transform_apply()
 
     def periodic(self, periodicity=False, cell=None):
         if cell is None:
@@ -58,10 +60,10 @@ class BlenderObject:
                 cell = self.cell
             except AttributeError:
                 cell = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
-        cell = (
-            self.blender_object.rotation_euler.to_matrix().inverted()
-            @ Matrix(cell).transposed()
-        ).transposed()
+        # cell = (
+        #    self.blender_object.rotation_euler.to_matrix().inverted()
+        #    @ Matrix(cell).transposed()
+        # ).transposed()
 
         if not periodicity:
             pass

@@ -13,17 +13,35 @@ class Camera(BlenderObject):
             cls.blender_object = bpy.context.scene.camera
             cls.instance.position = position
             cls.instance.rotation = rotation
-            cls.set_resolution((1080, 1080))
+            cls.instance.resolution = (1080, 1080)
         return cls.instance
 
-    @classmethod
-    def set_resolution(cls, resolution):
-        bpy.data.scenes["Scene"].render.resolution_x = resolution[0]
-        bpy.data.scenes["Scene"].render.resolution_y = resolution[1]
+    @property
+    def resolution(self):
+        return (
+            bpy.context.scene.render.resolution_x,
+            bpy.context.scene.render.resolution_y,
+        )
+
+    @resolution.setter
+    def resolution(self, resolution):
+        bpy.context.scene.render.resolution_x = resolution[0]
+        bpy.context.scene.render.resolution_y = resolution[1]
+
+    @property
+    def focuslength(self):
+        return bpy.data.cameras["Camera"].lens
+
+    @focuslength.setter
+    def focuslength(self, focuslength):
+        bpy.data.cameras["Camera"].lens = focuslength
 
     def render(self, filepath=None):
+        engine = bpy.context.scene.render.engine
+        bpy.context.scene.render.engine = "CYCLES"
         if filepath is not None:
             bpy.context.scene.render.filepath = str(filepath)
             bpy.ops.render.render(write_still=True)
         else:
             bpy.ops.render.render()
+        bpy.context.scene.render.engine = engine
