@@ -14,7 +14,11 @@ from .periodic_table import PeriodicTable
 
 class Atom(BlenderObject):
     def __init__(
-        self, symbol, location=(0, 0, 0), cell=((1, 0, 0), (0, 1, 0), (0, 0, 1))
+        self,
+        symbol,
+        location=(0, 0, 0),
+        cell=((1, 0, 0), (0, 1, 0), (0, 0, 1)),
+        **kwargs
     ):
         self.cell = cell
         self.symbol = symbol
@@ -31,6 +35,7 @@ class Atom(BlenderObject):
             "use_smooth", [True] * len(self.blender_object.data.polygons)
         )
         self.material = element.material
+        super().__init__(**kwargs)
 
     @property
     def radius(self):

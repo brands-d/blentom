@@ -6,10 +6,15 @@ from .base import BlenderObject
 
 
 class Plane(BlenderObject):
-    def __init__(self, size=(100, 100), location=(0, 0, -10), orientation=(0, 0, 1)):
+    def __init__(
+        self, size=(100, 100), location=(0, 0, -10), rotation=(0, 0, 0), material=None
+    ):
         bpy.ops.mesh.primitive_plane_add(location=location)
         self.blender_object = bpy.context.active_object
         self.size = size
+        if material is not None:
+            self.material = material
+        super().__init__()
 
     @property
     def orientation(self):

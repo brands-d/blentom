@@ -33,7 +33,13 @@ class Material:
 
     @property
     def properties(self):
-        properties = {"Base Color": self.base_color, "Settings": self.settings}
+        properties = {}
+        for key, value in self.node.inputs.items():
+            if isinstance(value.default_value, bpy.types.bpy_prop_array):
+                properties[key] = tuple(value.default_value[:])
+            else:
+                properties[key] = value.default_value
+
         return properties
 
     @properties.setter
@@ -41,5 +47,14 @@ class Material:
         for key, value in properties.items():
             try:
                 self.node.inputs[key].default_value = value
-            except AttributeError:
+            except KeyError:
                 pass
+
+    def update(self, properties):
+        self.properties = properties
+        return self
+
+    def copy(self, name=None):
+        if name is None:
+            name = self.material.name + " Copy"
+        return Material(self.material.name, self.properties)

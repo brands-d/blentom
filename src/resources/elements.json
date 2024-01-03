@@ -6,8 +6,13 @@
     },
     {
         "symbol": "C",
-        "radius": 0.5,
+        "radius": 0.7,
         "covalent radius": 0.7
+    },
+    {
+        "symbol": "O",
+        "radius": 0.6,
+        "covalent radius": 0.6
     },
     {
         "symbol": "X",

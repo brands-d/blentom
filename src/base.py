@@ -1,3 +1,4 @@
+from numpy import mat
 import bpy  # type: ignore
 from math import radians  # type: ignore
 from mathutils import Matrix, Vector, Euler  # type: ignore
@@ -58,10 +59,6 @@ class BlenderObject:
                 cell = self.cell
             except AttributeError:
                 cell = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
-        # cell = (
-        #    self.blender_object.rotation_euler.to_matrix().inverted()
-        #    @ Matrix(cell).transposed()
-        # ).transposed()
 
         if not periodicity:
             pass

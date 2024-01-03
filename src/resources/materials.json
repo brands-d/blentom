@@ -22,6 +22,17 @@
         }
     },
     {
+        "Name": "O",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.05098039215,
+                0.05098039215,
+                1
+            ]
+        }
+    },
+    {
         "Name": "X",
         "Properties": {
             "Base Color": [

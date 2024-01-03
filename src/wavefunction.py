@@ -10,7 +10,13 @@ from .base import BlenderObject
 
 class WavefunctionPart(BlenderObject):
     def __init__(
-        self, data, origin, axes, level=0.02, cell=((1, 0, 0), (0, 1, 0), (0, 0, 1))
+        self,
+        data,
+        origin,
+        axes,
+        level=0.02,
+        cell=((1, 0, 0), (0, 1, 0), (0, 0, 1)),
+        **kwargs,
     ):
         self.level = level
         self.cell = cell
@@ -33,6 +39,7 @@ class WavefunctionPart(BlenderObject):
         bpy.data.collections["Collection"].objects.link(self.blender_object)
 
         self.material = Material.pre_defined(f"{name} Wavefunction")
+        super().__init__(**kwargs)
 
 
 class Wavefunction:
@@ -51,6 +58,14 @@ class Wavefunction:
         data, origin, axes, cell = Wavefunction._parse_cube(filename)
         wavefunction = Wavefunction(data, origin, axes, level=level, cell=cell)
         return wavefunction
+
+    @property
+    def positive(self):
+        return self.wavefunction_parts[1]
+
+    @property
+    def negative(self):
+        return self.wavefunction_parts[0]
 
     def periodic(self, periodicity=False):
         for wavefunction_part in self.wavefunction_parts:

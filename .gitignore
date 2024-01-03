@@ -170,3 +170,6 @@ blender
 # VSCode
 auto_load.py
 .vscode
+
+# Custom
+test*.*

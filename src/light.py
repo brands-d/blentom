@@ -6,10 +6,10 @@ from .base import BlenderObject
 class Light(BlenderObject):
     first = True
 
-    def __init__(self, position=(0, 0, 25), rotation=(0, 0, 0)):
+    def __init__(self, energy=10, position=(0, 0, 25), rotation=(0, 0, 0)):
         self.position = position
         self.rotation = rotation
-        self.energy = 10
+        self.energy = energy
 
     def __new__(cls, *args, **kwargs):
         light = super(Light, cls).__new__(cls)

@@ -7,7 +7,7 @@ from .base import BlenderObject
 
 
 class Bond(BlenderObject):
-    def __init__(self, atom_1, atom_2):
+    def __init__(self, atom_1, atom_2, **kwargs):
         self.cell = atom_1.cell
         distance = Vector(atom_1.position) - Vector(atom_2.position)
         location = Vector(atom_1.position) - distance / 2
@@ -23,3 +23,4 @@ class Bond(BlenderObject):
             "use_smooth", [True] * len(self.blender_object.data.polygons)
         )
         self.material = Material.pre_defined("Bond")
+        super().__init__(**kwargs)
