@@ -1,12 +1,11 @@
 from subprocess import call
 from sys import executable
 
-import bpy
-
 from . import auto_load
+from .src import *
 
 bl_info = {
-    "name": "Blentom",
+    "name": "blentom",
     "author": "Dominik Brandstetter",
     "description": "",
     "blender": (4, 0, 0),

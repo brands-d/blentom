@@ -1,5 +1,6 @@
-from blentom.base import BlenderObject  # type: ignore
 import bpy  # type: ignore
+
+from .base import BlenderObject
 
 
 class Light(BlenderObject):

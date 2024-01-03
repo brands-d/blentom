@@ -1,8 +1,6 @@
-from math import radians
-
-from matplotlib import axis
-from mathutils import Matrix, Vector, Euler  # type: ignore
 import bpy  # type: ignore
+from math import radians  # type: ignore
+from mathutils import Matrix, Vector, Euler  # type: ignore
 
 
 class BlenderObject:

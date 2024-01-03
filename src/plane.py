@@ -1,8 +1,8 @@
-from networkx import degree, normalized_cut_size
 import bpy  # type: ignore
-from blentom.base import BlenderObject  # type: ignore
+from math import degrees  # type: ignore
 from mathutils import Vector, Euler  # type: ignore
-from math import degrees
+
+from .base import BlenderObject
 
 
 class Plane(BlenderObject):

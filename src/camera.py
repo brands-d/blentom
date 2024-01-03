@@ -1,6 +1,6 @@
 import bpy  # type: ignore
 
-from blentom.base import BlenderObject  # type: ignore
+from .base import BlenderObject
 
 
 class Camera(BlenderObject):

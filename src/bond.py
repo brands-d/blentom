@@ -1,11 +1,9 @@
-from math import acos, atan2, degrees
-
-
 import bpy  # type: ignore
 from mathutils import Vector  # type: ignore
+from math import acos, atan2, degrees  # type: ignore
 
-from blentom.base import BlenderObject  # type: ignore
-from blentom.material import Material  # type: ignore
+from .material import Material
+from .base import BlenderObject
 
 
 class Bond(BlenderObject):

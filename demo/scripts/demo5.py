@@ -1,11 +1,11 @@
 from pathlib import Path
-from blentom.atom import Atoms
-from blentom.light import Light
-from blentom.camera import Camera
-from blentom.wavefunction import Wavefunction
-from blentom.plane import Plane
-from blentom.base import reset
-from blentom.material import Material
+from src.atom import Atoms
+from src.light import Light
+from src.camera import Camera
+from src.wavefunction import Wavefunction
+from src.plane import Plane
+from src.base import reset
+from src.material import Material
 
 reset()
 

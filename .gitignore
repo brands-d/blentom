@@ -161,12 +161,12 @@ cython_debug/
 
 # Blender
 *.blend*
-*.png
 assets
+blender
 
 # Apple
 .DS_Store
 
-# Example files
-*.cube
-*.pdb
+# VSCode
+auto_load.py
+.vscode

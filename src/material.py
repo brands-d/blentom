@@ -1,4 +1,6 @@
+from pathlib import Path
 import bpy  # type: ignore
+
 from json import load
 
 
@@ -13,7 +15,7 @@ class Material:
 
     @classmethod
     def pre_defined(cls, name):
-        with open("materials.json") as file:
+        with open(Path(__file__).parent / "resources" / "materials.json") as file:
             data = load(file)
 
         for material in data:

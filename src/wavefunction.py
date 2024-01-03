@@ -1,10 +1,11 @@
 import bpy  # type: ignore
-from ase.io.cube import read_cube_data
-from blentom.material import Material  # type: ignore
 from mathutils import Vector  # type: ignore
+
+from ase.io.cube import read_cube_data
 from skimage.measure import marching_cubes
 
-from blentom.base import BlenderObject  # type: ignore
+from .material import Material
+from .base import BlenderObject
 
 
 class WavefunctionPart(BlenderObject):

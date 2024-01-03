@@ -1,15 +1,15 @@
-from itertools import combinations
 from pathlib import Path
+from itertools import combinations
 
 import bpy  # type: ignore
-from ase.io import read
-from ase.calculators.vasp import VaspChargeDensity
 from mathutils import Vector  # type: ignore
 
-from blentom.base import BlenderObject  # type: ignore
-from blentom.bond import Bond  # type: ignore
-from blentom.material import Material  # type: ignore
-from blentom.periodic_table import PeriodicTable  # type: ignore
+from ase.io import read
+from ase.calculators.vasp import VaspChargeDensity
+
+from .bond import Bond
+from .base import BlenderObject
+from .periodic_table import PeriodicTable
 
 
 class Atom(BlenderObject):
