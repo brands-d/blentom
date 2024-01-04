@@ -10,7 +10,7 @@ Blentom is a Blender addon to allow for simple import, scene setup and rendering
 
 ## Usage
 
-**Navigate to the `Scripting` page inside Blender. There you find a console or you can load `.py` scripts or create new ones.
+**Navigate to the `Scripting` page inside Blender. There you find a console or you can load `.py` scripts or create new ones.**
 
 ### Quickstart
 
@@ -21,6 +21,10 @@ Atoms.read("path/to/input")
 camera = Camera()
 camera.render("path/to/output.png")
 ```
+
+### Import
+
+If you just want to import common files use the appropriate entry under `File > Import`.
 
 ### Demo Files
 Inside the `blentom/demo/scripts` you can find a couple of demo scripts that highlight certain features.
