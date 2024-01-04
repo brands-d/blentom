@@ -1,5 +1,8 @@
+from re import X
 from subprocess import call
 from sys import executable
+
+import bpy
 
 from . import auto_load
 from .src import *
@@ -14,12 +17,34 @@ bl_info = {
 }
 
 
+def menu_func_import_cube(self, context):
+    self.layout.operator(CubeImport.bl_idname, text="Gaussian Cube (.cube)")
+
+
+def menu_func_import_xyz(self, context):
+    self.layout.operator(XYZImport.bl_idname, text="XYZ (.xyz)")
+
+
+def menu_func_import_poscar(self, context):
+    self.layout.operator(POSCARImport.bl_idname, text="POSCAR (POSCAR)")
+
+
 def register():
-    pass
+    bpy.utils.register_class(CubeImport)
+    bpy.utils.register_class(XYZImport)
+    bpy.utils.register_class(POSCARImport)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_cube)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_xyz)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_poscar)
 
 
 def unregister():
-    pass
+    bpy.utils.unregister_class(CubeImport)
+    bpy.utils.unregister_class(XYZImport)
+    bpy.utils.unregister_class(POSCARImport)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_cube)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_xyz)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_poscar)
 
 
 def install_dependencies():
