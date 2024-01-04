@@ -16,6 +16,7 @@ class WavefunctionPart(BlenderObject):
         axes,
         level=0.02,
         cell=((1, 0, 0), (0, 1, 0), (0, 0, 1)),
+        quality=2,
         **kwargs,
     ):
         self.level = level
@@ -36,6 +37,9 @@ class WavefunctionPart(BlenderObject):
         self.blender_object.modifiers["Remesh"].mode = "VOXEL"
         self.blender_object.modifiers["Remesh"].voxel_size = 0.2
         self.blender_object.modifiers["Remesh"].use_smooth_shade = True
+        modifier = self.blender_object.modifiers.new("Subsurface", "SUBSURF")
+        modifier.levels = max(0, quality - 1)
+        modifier.render_levels = quality
         bpy.data.collections["Collection"].objects.link(self.blender_object)
 
         self.material = Material.pre_defined(f"{name} Wavefunction")

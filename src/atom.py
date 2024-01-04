@@ -18,6 +18,7 @@ class Atom(BlenderObject):
         symbol,
         location=(0, 0, 0),
         cell=((1, 0, 0), (0, 1, 0), (0, 0, 1)),
+        quality=1,
         **kwargs
     ):
         self.cell = cell
@@ -34,6 +35,9 @@ class Atom(BlenderObject):
         self.blender_object.data.polygons.foreach_set(
             "use_smooth", [True] * len(self.blender_object.data.polygons)
         )
+        modifier = self.blender_object.modifiers.new("Subsurface", "SUBSURF")
+        modifier.levels = max(0, quality - 1)
+        modifier.render_levels = quality
         self.material = element.material
         super().__init__(**kwargs)
 
