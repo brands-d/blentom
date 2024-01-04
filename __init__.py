@@ -9,27 +9,28 @@ bl_info = {
     "author": "Dominik Brandstetter",
     "description": "",
     "blender": (4, 0, 0),
-    "version": (0, 0, 1),
+    "version": (0, 1, 0),
     "category": "Import-Export",
 }
 
 
 def register():
-    auto_load.register()
+    pass
 
 
 def unregister():
-    auto_load.unregister()
+    pass
 
 
 def install_dependencies():
     # On Windows Blender needs to run in Admin Mode
     py_exec = executable
-    # call([str(py_exec), "-m", "ensurepip", "--user"])
-    # call([str(py_exec), "-m", "pip", "install", "--upgrade", "pip"])
-    # call([str(py_exec), "-m", "pip", "install", "--user", "scikit-image"])
-    # call([str(py_exec), "-m", "pip", "install", "--user", "ase"])
+    call([str(py_exec), "-m", "ensurepip", "--user"])
+    call([str(py_exec), "-m", "pip", "install", "--upgrade", "pip"])
+    call([str(py_exec), "-m", "pip", "install", "--user", "scikit-image"])
+    call([str(py_exec), "-m", "pip", "install", "--user", "ase"])
 
 
-auto_load.init()
-install_dependencies()
+if __name__ == "__main__":
+    auto_load.init()
+    install_dependencies()
