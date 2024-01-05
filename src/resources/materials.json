@@ -1,49 +1,5 @@
 [
     {
-        "Name": "H",
-        "Properties": {
-            "Base Color": [
-                1,
-                1,
-                1,
-                1
-            ]
-        }
-    },
-    {
-        "Name": "C",
-        "Properties": {
-            "Base Color": [
-                0,
-                0,
-                0,
-                1
-            ]
-        }
-    },
-    {
-        "Name": "O",
-        "Properties": {
-            "Base Color": [
-                1,
-                0.05098039215,
-                0.05098039215,
-                1
-            ]
-        }
-    },
-    {
-        "Name": "X",
-        "Properties": {
-            "Base Color": [
-                0,
-                0,
-                0,
-                1
-            ]
-        }
-    },
-    {
         "Name": "Bond",
         "Properties": {
             "Base Color": [
@@ -112,6 +68,1238 @@
                 1
             ],
             "Emission Strength": 0.5
+        }
+    },
+    {
+        "Name": "H",
+        "Properties": {
+            "Base Color": [
+                1,
+                1,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "D",
+        "Properties": {
+            "Base Color": [
+                1,
+                1,
+                0.752,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "T",
+        "Properties": {
+            "Base Color": [
+                1,
+                1,
+                0.627,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "He",
+        "Properties": {
+            "Base Color": [
+                0.851,
+                1,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Li",
+        "Properties": {
+            "Base Color": [
+                0.8,
+                0.502,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Be",
+        "Properties": {
+            "Base Color": [
+                0.761,
+                1,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "B",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.71,
+                0.71,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "C",
+        "Properties": {
+            "Base Color": [
+                0.565,
+                0.565,
+                0.565,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "N",
+        "Properties": {
+            "Base Color": [
+                0.188,
+                0.314,
+                0.973,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "O",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.051,
+                0.051,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "F",
+        "Properties": {
+            "Base Color": [
+                0.565,
+                0.878,
+                0.314,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ne",
+        "Properties": {
+            "Base Color": [
+                0.702,
+                0.89,
+                0.961,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Na",
+        "Properties": {
+            "Base Color": [
+                0.671,
+                0.361,
+                0.949,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Mg",
+        "Properties": {
+            "Base Color": [
+                0.541,
+                1,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Al",
+        "Properties": {
+            "Base Color": [
+                0.749,
+                0.651,
+                0.651,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Si",
+        "Properties": {
+            "Base Color": [
+                0.941,
+                0.784,
+                0.627,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "P",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.502,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "S",
+        "Properties": {
+            "Base Color": [
+                1,
+                1,
+                0.188,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cl",
+        "Properties": {
+            "Base Color": [
+                0.122,
+                0.941,
+                0.122,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ar",
+        "Properties": {
+            "Base Color": [
+                0.502,
+                0.82,
+                0.89,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "K",
+        "Properties": {
+            "Base Color": [
+                0.561,
+                0.251,
+                0.831,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ca",
+        "Properties": {
+            "Base Color": [
+                0.239,
+                1,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Sc",
+        "Properties": {
+            "Base Color": [
+                0.902,
+                0.902,
+                0.902,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ti",
+        "Properties": {
+            "Base Color": [
+                0.749,
+                0.761,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "V",
+        "Properties": {
+            "Base Color": [
+                0.651,
+                0.651,
+                0.671,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cr",
+        "Properties": {
+            "Base Color": [
+                0.541,
+                0.6,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Mn",
+        "Properties": {
+            "Base Color": [
+                0.612,
+                0.478,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Fe",
+        "Properties": {
+            "Base Color": [
+                0.878,
+                0.4,
+                0.2,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Co",
+        "Properties": {
+            "Base Color": [
+                0.941,
+                0.565,
+                0.627,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ni",
+        "Properties": {
+            "Base Color": [
+                0.314,
+                0.816,
+                0.314,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cu",
+        "Properties": {
+            "Base Color": [
+                0.784,
+                0.502,
+                0.2,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Zn",
+        "Properties": {
+            "Base Color": [
+                0.49,
+                0.502,
+                0.69,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ga",
+        "Properties": {
+            "Base Color": [
+                0.761,
+                0.561,
+                0.561,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ge",
+        "Properties": {
+            "Base Color": [
+                0.4,
+                0.561,
+                0.561,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "As",
+        "Properties": {
+            "Base Color": [
+                0.741,
+                0.502,
+                0.89,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Se",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.631,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Br",
+        "Properties": {
+            "Base Color": [
+                0.651,
+                0.161,
+                0.161,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Kr",
+        "Properties": {
+            "Base Color": [
+                0.361,
+                0.722,
+                0.82,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Rb",
+        "Properties": {
+            "Base Color": [
+                0.439,
+                0.18,
+                0.69,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Sr",
+        "Properties": {
+            "Base Color": [
+                0,
+                1,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Y",
+        "Properties": {
+            "Base Color": [
+                0.58,
+                1,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Zr",
+        "Properties": {
+            "Base Color": [
+                0.58,
+                0.878,
+                0.878,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Nb",
+        "Properties": {
+            "Base Color": [
+                0.451,
+                0.761,
+                0.788,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Mo",
+        "Properties": {
+            "Base Color": [
+                0.329,
+                0.71,
+                0.71,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Tc",
+        "Properties": {
+            "Base Color": [
+                0.231,
+                0.62,
+                0.62,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ru",
+        "Properties": {
+            "Base Color": [
+                0.141,
+                0.561,
+                0.561,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Rh",
+        "Properties": {
+            "Base Color": [
+                0.039,
+                0.49,
+                0.549,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pd",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.412,
+                0.522,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ag",
+        "Properties": {
+            "Base Color": [
+                0.753,
+                0.753,
+                0.753,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cd",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.851,
+                0.561,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "In",
+        "Properties": {
+            "Base Color": [
+                0.651,
+                0.459,
+                0.451,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Sn",
+        "Properties": {
+            "Base Color": [
+                0.4,
+                0.502,
+                0.502,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Sb",
+        "Properties": {
+            "Base Color": [
+                0.62,
+                0.388,
+                0.71,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Te",
+        "Properties": {
+            "Base Color": [
+                0.831,
+                0.478,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "I",
+        "Properties": {
+            "Base Color": [
+                0.58,
+                0,
+                0.58,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Xe",
+        "Properties": {
+            "Base Color": [
+                0.259,
+                0.62,
+                0.69,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cs",
+        "Properties": {
+            "Base Color": [
+                0.341,
+                0.09,
+                0.561,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ba",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.788,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "La",
+        "Properties": {
+            "Base Color": [
+                0.439,
+                0.671,
+                0.98,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ce",
+        "Properties": {
+            "Base Color": [
+                1,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pr",
+        "Properties": {
+            "Base Color": [
+                0.851,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Nd",
+        "Properties": {
+            "Base Color": [
+                0.78,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pm",
+        "Properties": {
+            "Base Color": [
+                0.639,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Sm",
+        "Properties": {
+            "Base Color": [
+                0.533,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Eu",
+        "Properties": {
+            "Base Color": [
+                0.239,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Gd",
+        "Properties": {
+            "Base Color": [
+                0.18,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Tb",
+        "Properties": {
+            "Base Color": [
+                0.118,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Dy",
+        "Properties": {
+            "Base Color": [
+                0.078,
+                1,
+                0.78,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ho",
+        "Properties": {
+            "Base Color": [
+                0,
+                1,
+                0.612,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Er",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.901,
+                0.458,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Tm",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.831,
+                0.322,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Yb",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.749,
+                0.22,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Lu",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.67,
+                0.14,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Hf",
+        "Properties": {
+            "Base Color": [
+                0.302,
+                0.761,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ta",
+        "Properties": {
+            "Base Color": [
+                0.302,
+                0.651,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "W",
+        "Properties": {
+            "Base Color": [
+                0.129,
+                0.58,
+                0.839,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Re",
+        "Properties": {
+            "Base Color": [
+                0.149,
+                0.49,
+                0.671,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Os",
+        "Properties": {
+            "Base Color": [
+                0.149,
+                0.4,
+                0.588,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ir",
+        "Properties": {
+            "Base Color": [
+                0.09,
+                0.329,
+                0.529,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pt",
+        "Properties": {
+            "Base Color": [
+                0.816,
+                0.816,
+                0.878,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Au",
+        "Properties": {
+            "Base Color": [
+                1,
+                0.82,
+                0.137,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Hg",
+        "Properties": {
+            "Base Color": [
+                0.722,
+                0.722,
+                0.816,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Tl",
+        "Properties": {
+            "Base Color": [
+                0.651,
+                0.329,
+                0.302,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pb",
+        "Properties": {
+            "Base Color": [
+                0.341,
+                0.349,
+                0.38,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Bi",
+        "Properties": {
+            "Base Color": [
+                0.619,
+                0.309,
+                0.709,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Po",
+        "Properties": {
+            "Base Color": [
+                0.671,
+                0.361,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "At",
+        "Properties": {
+            "Base Color": [
+                0.459,
+                0.309,
+                0.271,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Rn",
+        "Properties": {
+            "Base Color": [
+                0.259,
+                0.51,
+                0.588,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Fr",
+        "Properties": {
+            "Base Color": [
+                0.259,
+                0,
+                0.4,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ra",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.49,
+                0,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Ac",
+        "Properties": {
+            "Base Color": [
+                0.439,
+                0.671,
+                0.98,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Th",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.729,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pa",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.631,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "U",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.561,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Np",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.502,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Pu",
+        "Properties": {
+            "Base Color": [
+                0,
+                0.42,
+                1,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Am",
+        "Properties": {
+            "Base Color": [
+                0.329,
+                0.361,
+                0.949,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cm",
+        "Properties": {
+            "Base Color": [
+                0.471,
+                0.361,
+                0.89,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Bk",
+        "Properties": {
+            "Base Color": [
+                0.541,
+                0.31,
+                0.89,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Cf",
+        "Properties": {
+            "Base Color": [
+                0.639,
+                0.212,
+                0.827,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Es",
+        "Properties": {
+            "Base Color": [
+                0.702,
+                0.122,
+                0.827,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Fm",
+        "Properties": {
+            "Base Color": [
+                0.702,
+                0.122,
+                0.729,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Md",
+        "Properties": {
+            "Base Color": [
+                0.702,
+                0.051,
+                0.651,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "No",
+        "Properties": {
+            "Base Color": [
+                0.741,
+                0,
+                0.529,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Lr",
+        "Properties": {
+            "Base Color": [
+                0.78,
+                0,
+                0.4,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Rf",
+        "Properties": {
+            "Base Color": [
+                0.8,
+                0,
+                0.361,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Db",
+        "Properties": {
+            "Base Color": [
+                0.82,
+                0,
+                0.309,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Sg",
+        "Properties": {
+            "Base Color": [
+                0.851,
+                0,
+                0.271,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Bh",
+        "Properties": {
+            "Base Color": [
+                0.902,
+                0,
+                0.22,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Hs",
+        "Properties": {
+            "Base Color": [
+                0.902,
+                0,
+                0.18,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "Mt",
+        "Properties": {
+            "Base Color": [
+                0.922,
+                0,
+                0.149,
+                1
+            ]
+        }
+    },
+    {
+        "Name": "X",
+        "Properties": {
+            "Base Color": [
+                0,
+                0,
+                0,
+                1
+            ]
         }
     }
 ]

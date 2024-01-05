@@ -1,4 +1,3 @@
-from re import X
 from subprocess import call
 from sys import executable
 
