@@ -4,6 +4,13 @@ from sys import executable
 import bpy
 
 from . import auto_load
+
+py_exec = executable
+call([str(py_exec), "-m", "ensurepip", "--user"])
+call([str(py_exec), "-m", "pip", "install", "--upgrade", "pip"])
+call([str(py_exec), "-m", "pip", "install", "--user", "scikit-image"])
+call([str(py_exec), "-m", "pip", "install", "--user", "ase"])
+
 from .src import *
 
 bl_info = {
@@ -46,15 +53,5 @@ def unregister():
     bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_poscar)
 
 
-def install_dependencies():
-    # On Windows Blender needs to run in Admin Mode
-    py_exec = executable
-    call([str(py_exec), "-m", "ensurepip", "--user"])
-    call([str(py_exec), "-m", "pip", "install", "--upgrade", "pip"])
-    call([str(py_exec), "-m", "pip", "install", "--user", "scikit-image"])
-    call([str(py_exec), "-m", "pip", "install", "--user", "ase"])
-
-
 if __name__ == "__main__":
     auto_load.init()
-    install_dependencies()
