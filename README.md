@@ -5,8 +5,12 @@ Blentom is a Blender addon to allow for simple import, scene setup and rendering
 ## Installation
 
 1. **Download the Addon**: Download the `blentom.zip` file from the [GitHub Page](https://github.com/brands-d/blentom/tree/v1.0.0b).
-2. **Install in Blender**: Open Blender and navigate to `Edit > Preferences > Add-ons > Install...`, then select the `blentom.zip` file.
-3. **Enable the Addon**: Search for 'Blentom' in the Add-ons tab and enable it.
+2. **Install in Blender**: Open Blender and navigate to `Edit > Preferences > Add-ons > Install...`, then select the `blentom.zip` file[^1].
+3. **Enable the Addon**: Search for 'Blentom' in the Add-ons tab and enable it[^2].
+
+
+[^1]: On Windows Blender has to be executed in administrator mode.
+[^2]: The activation takes some time because external dependencies are installed.
 
 ## Usage
 
