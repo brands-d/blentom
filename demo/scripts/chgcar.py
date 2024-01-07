@@ -7,4 +7,4 @@ reset()
 dir_ = Path(".") / "demo"
 
 atom = Atoms.read(dir_ / "data" / "CHGCAR")
-density = ChargeDensity.read(dir_ / "CHGCAR")  # does not work yet
+adensity = ChargeDensity.read(dir_ / "data" / "CHGCAR", level=0.45)
