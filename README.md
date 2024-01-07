@@ -1,6 +1,6 @@
 # Blentom
 
-Blentom is a Blender addon to allow for simple import, scene setup and rendering of files common in the electronic structure simulation community. Currently it supports molecule-like atomic structures in all ASE supported files (e.g. `.cube`, `POSCAR`, `.xyz`, `.pdb`, etc.). Furthermore wavefunction densities can additionally be loaded from `.cube` files.
+Blentom is a Blender addon to allow for simple import, scene setup and rendering of files common in the electronic structure simulation community. Currently it supports molecule-like atomic structures in all ASE supported files (e.g. `.cube`, `POSCAR`, `.xyz`, `.pdb`, etc.). Furthermore wavefunction densities can additionally be loaded from `.cube` files and charge densities from `CHGCAR` files.
 
 ## Installation
 
