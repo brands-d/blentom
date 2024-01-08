@@ -1,20 +1,24 @@
 from .dependencies import install_dependencies
 
-# install_dependencies()
+install_dependencies()
 
 import bpy
 from . import auto_load
 
-from .src import (
-    CubeImport,
-    XYZImport,
-    POSCARImport,
-    menu_func_import_cube,
-    menu_func_import_xyz,
-    menu_func_import_poscar,
-    bl_info,
-)
 from .src import *
+
+bl_info = {
+    "name": "blentom",
+    "author": "Dominik Brandstetter",
+    "email": "dominik.brandstetter@uni-graz.at",
+    "license": "MIT",
+    "version": (1, 0),
+    "blender": (4, 0, 0),
+    "description": "Import of common electronic structure files.",
+    "doc_url": "https://github.com/brands-d/blentom/tree/main",
+    "tracker_url": "https://github.com/brands-d/blentom/issues",
+    "category": "Import-Export",
+}
 
 
 def register():
