@@ -21,3 +21,14 @@ __license__ = "MIT"
 __description__ = "Import of common electronic structure files."
 __tracker__ = "https://github.com/brands-d/blentom/issues"
 __category__ = "Import-Export"
+
+bl_info = {
+    "name": __name__,
+    "author": __author__,
+    "version": __version__,
+    "blender": __blend_version__,
+    "description": __description__,
+    "doc_url": __url__,
+    "tracker_url": __tracker__,
+    "category": __category__,
+}

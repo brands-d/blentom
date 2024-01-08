@@ -1,21 +1,20 @@
-from dependencies import install_dependencies
+from .dependencies import install_dependencies
 
-install_dependencies()
+# install_dependencies()
 
 import bpy
 from . import auto_load
-from .src import *
 
-bl_info = {
-    "name": __name__,
-    "author": __author__,
-    "version": __version__,
-    "blender": __blend_version__,
-    "description": __description__,
-    "doc_url": __url__,
-    "tracker_url": __tracker__,
-    "category": __category__,
-}
+from .src import (
+    CubeImport,
+    XYZImport,
+    POSCARImport,
+    menu_func_import_cube,
+    menu_func_import_xyz,
+    menu_func_import_poscar,
+    bl_info,
+)
+from .src import *
 
 
 def register():
