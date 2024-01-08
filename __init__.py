@@ -1,38 +1,21 @@
-from subprocess import call
-from sys import executable
+from dependencies import install_dependencies
+
+install_dependencies()
 
 import bpy
-
 from . import auto_load
-
-py_exec = executable
-call([str(py_exec), "-m", "ensurepip", "--user"])
-call([str(py_exec), "-m", "pip", "install", "--upgrade", "pip"])
-call([str(py_exec), "-m", "pip", "install", "--user", "scikit-image"])
-call([str(py_exec), "-m", "pip", "install", "--user", "ase"])
-
 from .src import *
 
 bl_info = {
-    "name": "blentom",
-    "author": "Dominik Brandstetter",
-    "description": "",
-    "blender": (4, 0, 0),
-    "version": (0, 1, 0),
-    "category": "Import-Export",
+    "name": __name__,
+    "author": __author__,
+    "version": __version__,
+    "blender": __blend_version__,
+    "description": __description__,
+    "doc_url": __url__,
+    "tracker_url": __tracker__,
+    "category": __category__,
 }
-
-
-def menu_func_import_cube(self, context):
-    self.layout.operator(CubeImport.bl_idname, text="Gaussian Cube (.cube)")
-
-
-def menu_func_import_xyz(self, context):
-    self.layout.operator(XYZImport.bl_idname, text="XYZ (.xyz)")
-
-
-def menu_func_import_poscar(self, context):
-    self.layout.operator(POSCARImport.bl_idname, text="POSCAR (POSCAR)")
 
 
 def register():

@@ -20,6 +20,10 @@ class CubeImport(Operator, ImportHelper):
         return {"FINISHED"}
 
 
+def menu_func_import_cube(self, *args, **kwargs):
+    self.layout.operator(CubeImport.bl_idname, text="Gaussian Cube (.cube)")
+
+
 class XYZImport(Operator, ImportHelper):
     bl_idname = "import.xyz"
     bl_label = "Import .xyz"
@@ -33,6 +37,10 @@ class XYZImport(Operator, ImportHelper):
         return {"FINISHED"}
 
 
+def menu_func_import_xyz(self, *args, **kwar):
+    self.layout.operator(XYZImport.bl_idname, text="XYZ (.xyz)")
+
+
 class POSCARImport(Operator, ImportHelper):
     bl_idname = "import.poscar"
     bl_label = "Import POSCAR"
@@ -40,3 +48,7 @@ class POSCARImport(Operator, ImportHelper):
     def execute(self, context):
         Atoms.read(self.filepath)
         return {"FINISHED"}
+
+
+def menu_func_import_poscar(self, *args, **kwar):
+    self.layout.operator(POSCARImport.bl_idname, text="POSCAR (POSCAR)")
