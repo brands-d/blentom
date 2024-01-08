@@ -5,7 +5,11 @@ from json import load
 
 
 class Material:
+
+    materials = []
+    
     def __init__(self, name="New Material", properties={}):
+        self.name = name
         self.material = bpy.data.materials.new(name=name)
         self.material.use_nodes = True
         self.material.use_backface_culling = True
@@ -15,12 +19,18 @@ class Material:
 
     @classmethod
     def pre_defined(cls, name):
+        for material in Material.materials:
+            if material.name == name:
+                return material
+
+        # Not existing already
         with open(Path(__file__).parent / "resources" / "materials.json") as file:
             data = load(file)
-
+    
         for material in data:
             if material["Name"] == name:
                 return Material(name, material["Properties"])
+        
         return None
 
     @property
