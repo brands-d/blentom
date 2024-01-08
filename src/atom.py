@@ -72,7 +72,7 @@ class Atoms:
         if format.lower() in "auto":
             if filename.name[:6] in ("POSCAR", "CONTCAR"):
                 format = "vasp"
-            elif filename.name[:6] in ("CHGCAR",):
+            elif filename.name[:6] in ("CHGCAR", "PARCHG"):
                 format = "chgcar"
             else:
                 format = "default"
