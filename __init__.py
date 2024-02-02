@@ -1,6 +1,6 @@
 from .dependencies import install_dependencies
 
-install_dependencies()
+# install_dependencies()
 
 import bpy  # type: ignore
 from . import auto_load

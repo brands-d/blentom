@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from .atom import Atom, Atoms
+# from .atom import Atom, Atoms
 from .base import reset
 from .camera import Camera
 from .chargedensity import ChargeDensity
@@ -9,5 +9,8 @@ from .material import Material
 from .plane import Plane
 from .wavefunction import Wavefunction
 from .imports import *
+
+
+from .object import *
 
 __directory__ = Path(__file__)
