@@ -1,4 +1,5 @@
 from pathlib import Path
+from itertools import product, combinations
 
 import bpy
 from ase.io import read
@@ -16,7 +17,8 @@ class Atom(MeshObject):
     _atoms = []
 
     def __init__(self, element="X"):
-        bpy.ops.mesh.primitive_uv_sphere_add()
+        # TODO
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.5)
         super().__init__()
 
         self.element = element
@@ -64,6 +66,7 @@ class Atom(MeshObject):
 
 class Atoms(MeshObject):
     def __init__(self, name):
+        self._atoms = []
         self._unit_cell = None
         self.copies = []
 
@@ -96,6 +99,7 @@ class Atoms(MeshObject):
         for object in objects:
             if isinstance(object, Atom):
                 _ = self.atoms_collection + object
+                self._atoms.append(object)
             elif isinstance(object, Bond):
                 _ = self.bonds_collection + object
 
@@ -120,15 +124,46 @@ class Atoms(MeshObject):
         else:
             self._unit_cell = diag(cell)
 
-    def repeat(self, repetitions):
-        self.copies_collection = Collection(f"{self.name} Copies")
+    def get(self, filter=None):
+        self.clean()
 
+        if filter is None or filter == "all":
+            return self._atoms
+        elif isinstance(filter, str) and len(filter) <= 2:
+            return [atom for atom in self._atoms if atom.element == filter]
+        elif callable(filter):
+            return [atom for atom in self._atoms if filter(atom)]
+
+    def clean(self):
+        for atom in self._atoms:
+            if atom.blender_object is None:
+                self._atoms.remove(atom)
+
+    def create_bonds(self, periodic=False):
+        for atom_1, atom_2 in combinations(self.get("all"), 2):
+            for x, y, z in (p for p in product((-1, 0, 1), repeat=3)):
+                shift = Vector(
+                    x * self.unit_cell[0]
+                    + y * self.unit_cell[1]
+                    + z * self.unit_cell[2]
+                )
+                if (
+                    Vector(atom_1.position) - Vector(atom_2.position) - Vector(shift)
+                ).length <= 1.5:
+                    if (x, y, z) != (0, 0, 0) and periodic:
+                        atom_2 = _DummyAtom(atom_2)
+                        atom_2.position = Vector(atom_2.position) + shift
+
+                    self += Bond(atom_1, atom_2)
+
+    def repeat(self, repetitions):
         if repetitions == (0, 0, 0):
             return
         else:
             if self.unit_cell is None:
                 raise RuntimeError("No unit cell defined.")
 
+            self.copies_collection = Collection(f"{self.name} Copies")
             repetitions = [
                 range(min(0, repetition), max(0, repetition) + 1)
                 for repetition in repetitions
@@ -158,3 +193,9 @@ class Atoms(MeshObject):
         self.copies_collection + instance
 
         return instance
+
+
+class _DummyAtom:
+    def __init__(self, atom):
+        self.position = atom.position
+        self.name = atom.name
