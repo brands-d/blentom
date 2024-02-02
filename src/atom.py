@@ -1,4 +1,7 @@
+from pathlib import Path
+
 import bpy
+from ase.io import read
 from mathutils import Vector
 from numpy import diag, ndarray
 
@@ -9,12 +12,40 @@ from .object import Object
 
 
 class Atom(MeshObject):
+
+    _atoms = []
+
     def __init__(self, element="X"):
         bpy.ops.mesh.primitive_uv_sphere_add()
         super().__init__()
 
         self.element = element
         self.name = element
+
+        Atom._atoms.append(self)
+
+    @classmethod
+    def ase(cls, atom):
+        self = Atom(atom.symbol)
+        self.location = atom.position
+        return self
+
+    @classmethod
+    def get(cls, filter=None):
+        Atom._clean()
+
+        if filter is None or filter == "all":
+            return cls._atoms
+        elif isinstance(filter, str) and len(filter) <= 2:
+            return [atom for atom in cls._atoms if atom.element == filter]
+        elif callable(filter):
+            return [atom for atom in cls._atoms if filter(atom)]
+
+    @classmethod
+    def _clean(cls):
+        for atom in cls._atoms:
+            if atom.blender_object is None:
+                cls._atoms.remove(atom)
 
     def __add__(self, other):
         if isinstance(other, Atom):
@@ -25,6 +56,10 @@ class Atom(MeshObject):
         elif isinstance(other, Atoms):
             other += self
             return other
+
+    def delete(self):
+        self._atoms.remove(self)
+        super().delete()
 
 
 class Atoms(MeshObject):
@@ -37,6 +72,23 @@ class Atoms(MeshObject):
         self.collection.link(self.atoms_collection)
         self.bonds_collection = Collection("Bonds")
         self.collection.link(self.bonds_collection)
+
+    @classmethod
+    def ase(cls, atoms, name):
+        self = Atoms(name)
+        self.unit_cell = atoms.cell[:]
+        for atom in atoms:
+            self += Atom.ase(atom)
+
+        return self
+
+    @classmethod
+    def read(cls, filename, name=None):
+        filename = Path(filename)
+        if name is None:
+            name = filename.stem
+
+        return Atoms.ase(read(str(filename)), name=name)
 
     def __add__(self, objects):
         if not isinstance(objects, (list, tuple)):
