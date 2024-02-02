@@ -1,106 +1,108 @@
-from pathlib import Path
-from itertools import combinations
-
-import bpy  # type: ignore
-from mathutils import Vector  # type: ignore
-
-from ase.io import read
-from ase.calculators.vasp import VaspChargeDensity
+import bpy
+from mathutils import Vector
+from numpy import diag, ndarray
 
 from .bond import Bond
-from .base import BlenderObject
-from .periodic_table import PeriodicTable
+from .collection import Collection
+from .meshobject import MeshObject
+from .object import Object
 
 
-class Atom(BlenderObject):
-    def __init__(
-        self,
-        symbol,
-        location=(0, 0, 0),
-        cell=((1, 0, 0), (0, 1, 0), (0, 0, 1)),
-        quality=1,
-        **kwargs
-    ):
-        self.cell = cell
-        self.symbol = symbol
-        try:
-            element = PeriodicTable[symbol]
-        except KeyError:
-            element = PeriodicTable["X"]
-        self.covalent_radius = element.covalent_radius
-        radius = element.radius
+class Atom(MeshObject):
+    def __init__(self, element="X"):
+        bpy.ops.mesh.primitive_uv_sphere_add()
+        super().__init__()
 
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=radius, location=location)
-        self.blender_object = bpy.context.active_object
-        self.blender_object.data.polygons.foreach_set(
-            "use_smooth", [True] * len(self.blender_object.data.polygons)
-        )
-        modifier = self.blender_object.modifiers.new("Subsurface", "SUBSURF")
-        modifier.levels = max(0, quality - 1)
-        modifier.render_levels = quality
-        self.material = element.material
-        super().__init__(**kwargs)
+        self.element = element
+        self.name = element
+
+    def __add__(self, other):
+        if isinstance(other, Atom):
+            atoms = Atoms("New Atoms")
+            atoms += self
+            atoms += other
+            return atoms
+        elif isinstance(other, Atoms):
+            other += self
+            return other
+
+
+class Atoms(MeshObject):
+    def __init__(self, name):
+        self._unit_cell = None
+        self.copies = []
+
+        self.collection = Collection(name)
+        self.atoms_collection = Collection("Atoms")
+        self.collection.link(self.atoms_collection)
+        self.bonds_collection = Collection("Bonds")
+        self.collection.link(self.bonds_collection)
+
+    def __add__(self, objects):
+        if not isinstance(objects, (list, tuple)):
+            objects = (objects,)
+        for object in objects:
+            if isinstance(object, Atom):
+                _ = self.atoms_collection + object
+            elif isinstance(object, Bond):
+                _ = self.bonds_collection + object
+
+        return self
 
     @property
-    def radius(self):
-        return self.blender_object.scale[0]
+    def name(self):
+        return self.collection.name
 
-    @radius.setter
-    def radius(self, radius):
-        self.blender_object.scale = (radius, radius, radius)
+    @name.setter
+    def name(self, name):
+        self.collection.name = name
 
+    @property
+    def unit_cell(self):
+        return self._unit_cell
 
-class Atoms:
-    def __init__(self, atoms, bonds=1.2):
-        self.cell = atoms.cell[:]
-        self.atoms = []
-        for atom in atoms:
-            self.atoms.append(Atom(atom.symbol, atom.position, cell=self.cell))
-
-        if bonds:
-            self.bonds = []
-            for atom_i, atom_j in combinations(self.atoms, 2):
-                distance = (Vector(atom_i.position) - Vector(atom_j.position)).length
-                if distance <= 1.2 * (atom_i.covalent_radius + atom_j.covalent_radius):
-                    self.bonds.append(Bond(atom_i, atom_j))
-
-    @classmethod
-    def read(cls, filename, format="auto"):
-        if not isinstance(filename, Path):
-            filename = Path(filename)
-
-        if format.lower() in "auto":
-            if filename.name[:6] in ("POSCAR", "CONTCAR"):
-                format = "vasp"
-            elif filename.name[:6] in ("CHGCAR", "PARCHG"):
-                format = "chgcar"
-            else:
-                format = "default"
-
-        if format.lower() in ("chgcar",):
-            return Atoms(VaspChargeDensity(filename).atoms[-1])
+    @unit_cell.setter
+    def unit_cell(self, cell):
+        if isinstance(cell[0], (ndarray, tuple, Vector, list)):
+            self._unit_cell = cell
         else:
-            return Atoms(read(filename))
+            self._unit_cell = diag(cell)
 
-    @property
-    def positions(self):
-        return tuple([atom.position for atom in self.atoms])
+    def repeat(self, repetitions):
+        self.copies_collection = Collection(f"{self.name} Copies")
 
-    @positions.setter
-    def positions(self, positions):
-        if len(positions) == len(self.atoms):
-            for atom, position in zip(self.atoms, positions):
-                atom.position = position
+        if repetitions == (0, 0, 0):
+            return
+        else:
+            if self.unit_cell is None:
+                raise RuntimeError("No unit cell defined.")
 
-    def periodic(self, periodicity=False):
-        for atom in self.atoms:
-            atom.periodic(periodicity, self.cell)
-        for bond in self.bonds:
-            bond.periodic(periodicity, self.cell)
+            repetitions = [
+                range(min(0, repetition), max(0, repetition) + 1)
+                for repetition in repetitions
+            ]
+            for x in repetitions[0]:
+                for y in repetitions[1]:
+                    for z in repetitions[2]:
+                        if (x == 0 and y == 0 and z == 0) or (
+                            x == 1 and y == 1 and z == 1
+                        ):
+                            continue
+                        copy = self._new_instance_to_scene(
+                            f"{self.name} - ({x:d}, {y:d}, {z:d})"
+                        )
+                        copy.location = (
+                            x * Vector(self.unit_cell[0])
+                            + y * Vector(self.unit_cell[1])
+                            + z * Vector(self.unit_cell[2])
+                        )
+                        self.copies.append(copy)
 
-    def add_atom(self, atom):
-        self.atoms.append(atom)
+    def _new_instance_to_scene(self, name):
+        instance = Object()
+        instance.blender_object = bpy.data.objects.new(name=name, object_data=None)
+        instance.blender_object.instance_type = "COLLECTION"
+        instance.blender_object.instance_collection = self.collection.collection
+        self.copies_collection + instance
 
-    def rotate(self, *args, **kwargs):
-        for atom in self.atoms:
-            atom.rotate(*args, **kwargs)
+        return instance
