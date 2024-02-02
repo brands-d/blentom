@@ -10,6 +10,8 @@ from .bond import Bond
 from .collection import Collection
 from .meshobject import MeshObject
 from .object import Object
+from .periodic_table import PeriodicTable
+from .material import Material
 
 
 class Atom(MeshObject):
@@ -17,12 +19,17 @@ class Atom(MeshObject):
     _atoms = []
 
     def __init__(self, element="X"):
-        # TODO
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.5)
+        try:
+            radius = PeriodicTable[element].radius
+        except KeyError:
+            radius = 1
+
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=1)
         super().__init__()
 
         self.element = element
         self.name = element
+        self.material = Material(element)
 
         Atom._atoms.append(self)
 

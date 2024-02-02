@@ -1,8 +1,6 @@
 from json import load
 from pathlib import Path
 
-from .material import Material
-
 # References:
 # Atomic radii: 10.1063/1.1725697
 # Color: CPK variant jmol
@@ -34,10 +32,10 @@ class Element:
         raise KeyError("Element not defined.")
 
     def parse(self, data):
+        self.name = data["name"]
         self.symbol = data["symbol"]
         self.radius = data["radius"]
         self.covalent_radius = data["covalent radius"]
-        self.material = Material.pre_defined(self.symbol)
 
 
 PeriodicTable = PeriodicTable()

@@ -2,11 +2,19 @@ from pathlib import Path
 
 import bpy
 
+from .periodic_table import PeriodicTable
+
 
 class Material:
     material_directory = Path(Path(__file__).parent / "resources" / "materials.blend")
 
     def __init__(self, name):
+        if len(name) <= 2:
+            try:
+                name = PeriodicTable[name].name
+            except KeyError:
+                name = "Unknown"
+
         self._material = bpy.data.materials.get(name)
         if self._material is None:
             try:
