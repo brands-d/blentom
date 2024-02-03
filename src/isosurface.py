@@ -58,6 +58,7 @@ class Isosurface(MeshObject):
     def repeat(self, repetitions):
         self._isosurface_object.repetitions = repetitions
         self.update()
+        self._isosurface_object.repetitions = (0, 0, 0)
 
     def update(self):
         self._unlink()
@@ -107,3 +108,81 @@ class CubeIsosurface:
         return marching_cubes_gaussian(
             self.density, self.origin, self.axes, self.name, self.level
         )
+
+
+class ChargeDensity(Isosurface):
+    def __init__(self, *args, **kwargs):
+        self.positive = Isosurface.read(*args, **kwargs)
+
+    @property
+    def level(self):
+        return self.positive.level
+
+    @level.setter
+    def level(self, level):
+        self.positive.level = level
+        self.positive.update()
+
+    @property
+    def name(self):
+        return self.positive._name
+
+    @name.setter
+    def name(self, name):
+        self.positive._name = name
+
+    @property
+    def blender_object(self):
+        return self.positive.blender_object
+
+    @blender_object.setter
+    def blender_object(self, blender_object):
+        self.positive.blender_object = blender_object
+
+    def repeat(self, repetitions):
+        self.positive.repeat(repetitions)
+
+
+class Wavefunction:
+    def __init__(self, filename, *args, name=None, **kwargs):
+        self._name = Path(filename).stem if name is None else name
+
+        kwargs["name"] = f"{self._name} - Positive"
+        self.positive = Isosurface.read(filename, *args, **kwargs)
+        kwargs["level"] = None if self.positive.level is None else -self.positive.level
+        kwargs["name"] = f"{self._name} - Negative"
+        self.negative = Isosurface.read(filename, *args, **kwargs)
+
+    @property
+    def level(self):
+        return (self.positive.level, self.negative.level)
+
+    @level.setter
+    def level(self, level):
+        self.positive.level = level
+        self.negative.level = -level
+        self.positive.update()
+        self.negative.update()
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self.name = name
+        self.positive.name = f"{name} - Positive"
+        self.negative.name = f"{name} - Negative"
+
+    @property
+    def blender_object(self):
+        return (self.positive.blender_object, self.negative.blender_object)
+
+    @blender_object.setter
+    def blender_object(self, blender_objects):
+        self.positive.blender_object = blender_objects[0]
+        self.positive.blender_object = blender_objects[1]
+
+    def repeat(self, repetitions):
+        self.positive.repeat(repetitions)
+        self.negative.repeat(repetitions)
