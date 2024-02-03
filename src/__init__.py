@@ -10,5 +10,6 @@ from .material import Material
 from .object import Object
 from .camera import Camera
 from .plane import Plane
+from .light import Light
 
 __directory__ = Path(__file__)
