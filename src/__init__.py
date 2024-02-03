@@ -16,6 +16,6 @@ from .bond import Bond
 from .collection import Collection
 from .lib import reset
 from .object import Object
-from .chargedensity import ChargeDensity
+from .isosurface import Isosurface
 
 __directory__ = Path(__file__)

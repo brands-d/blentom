@@ -23,10 +23,24 @@ def reset():
             bpy.data.collections.remove(collection)
 
 
-def marching_cubes(density, unit_cell, name, level=None):
+def marching_cubes_VASP(density, unit_cell, name, level=None):
     vertices, faces, *_ = mc(density, level=level)
     vertices = [
         _vertex_transform(vertex, unit_cell, density.shape) for vertex in vertices
+    ]
+    edges = [[face[i], face[(i + 1) % 3]] for face in faces for i in range(3)]
+
+    mesh = bpy.data.meshes.new(name=name)
+    mesh.from_pydata(vertices, edges, faces)
+    mesh.update()
+    return bpy.data.objects.new(name, mesh)
+
+
+def marching_cubes_gaussian(density, origin, axes, name, level=None):
+    vertices, faces, *_ = mc(density, level=level)
+    vertices = [
+        [Vector(vertex).dot(Vector(axes[i])) + origin[i] for i in range(3)]
+        for vertex in vertices
     ]
     edges = [[face[i], face[(i + 1) % 3]] for face in faces for i in range(3)]
 
