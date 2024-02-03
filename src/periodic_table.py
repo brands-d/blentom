@@ -7,6 +7,9 @@ from pathlib import Path
 
 
 class PeriodicTable:
+    default_elements = Path(__file__).parent / "resources" / "default_elements.json"
+    custom_elements = Path(__file__).parent / "resources" / "custom_elements.json"
+
     def __init__(self):
         self.elements = {}
 
@@ -22,14 +25,20 @@ class Element:
         self.parse(self.load(symbol))
 
     def load(self, symbol):
-        with open(Path(__file__).parent / "resources" / "elements.json") as file:
-            data = load(file)
+        def _load(path):
+            with open(path) as file:
+                data = load(file)
 
-        for element in data:
-            if element["symbol"] == symbol:
-                return element
+            for element in data:
+                if element["symbol"] == symbol:
+                    return element
 
-        raise KeyError("Element not defined.")
+            raise KeyError("Element not defined.")
+
+        try:
+            return _load(PeriodicTable.custom_elements)
+        except KeyError:
+            return _load(PeriodicTable.default_elements)
 
     def parse(self, data):
         self.name = data["name"]
