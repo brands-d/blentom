@@ -24,8 +24,8 @@ class Atom(MeshObject):
             radius = PeriodicTable[element].radius
             self.covalent_radius = PeriodicTable[element].covalent_radius
         except KeyError:
-            radius = 1
-            self.covalent_radius = 1
+            radius = PeriodicTable["X"].radius
+            self.covalent_radius = PeriodicTable["X"].covalent_radius
 
         bpy.ops.mesh.primitive_uv_sphere_add(radius=radius)
         super().__init__()
