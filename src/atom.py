@@ -166,7 +166,7 @@ class Atoms(MeshObject):
                 )
                 if (
                     Vector(atom_1.position) - Vector(atom_2.position) - Vector(shift)
-                ).length <= atom_1.covalent_radius + atom_2.covalent_radius:
+                ).length <= 1.2 * (atom_1.covalent_radius + atom_2.covalent_radius):
                     if (x, y, z) != (0, 0, 0) and periodic:
                         atom_2 = _DummyAtom(atom_2)
                         atom_2.position = Vector(atom_2.position) + shift

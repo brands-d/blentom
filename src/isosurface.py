@@ -114,6 +114,10 @@ class ChargeDensity(Isosurface):
     def __init__(self, *args, **kwargs):
         self.positive = Isosurface.read(*args, **kwargs)
 
+    @classmethod
+    def read(cls, *args, **kwargs):
+        return Wavefunction(*args, **kwargs)
+
     @property
     def level(self):
         return self.positive.level
@@ -147,11 +151,18 @@ class Wavefunction:
     def __init__(self, filename, *args, name=None, **kwargs):
         self._name = Path(filename).stem if name is None else name
 
+        if "level" not in kwargs or kwargs["level"] is None:
+            kwargs["level"] = 0.05
+
         kwargs["name"] = f"{self._name} - Positive"
         self.positive = Isosurface.read(filename, *args, **kwargs)
-        kwargs["level"] = None if self.positive.level is None else -self.positive.level
+        kwargs["level"] = -self.positive.level
         kwargs["name"] = f"{self._name} - Negative"
         self.negative = Isosurface.read(filename, *args, **kwargs)
+
+    @classmethod
+    def read(cls, *args, **kwargs):
+        return Wavefunction(*args, **kwargs)
 
     @property
     def level(self):

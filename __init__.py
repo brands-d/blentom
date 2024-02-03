@@ -22,22 +22,26 @@ bl_info = {
 
 
 def register():
-    # bpy.utils.register_class(CubeImport)
-    # bpy.utils.register_class(XYZImport)
-    # bpy.utils.register_class(POSCARImport)
-    # bpy.types.TOPBAR_MT_file_import.append(menu_func_import_cube)
-    # bpy.types.TOPBAR_MT_file_import.append(menu_func_import_xyz)
-    # bpy.types.TOPBAR_MT_file_import.append(menu_func_import_poscar)
+    bpy.utils.register_class(CubeImport)
+    bpy.utils.register_class(XYZImport)
+    bpy.utils.register_class(POSCARImport)
+    bpy.utils.register_class(CHGCARImport)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_cube)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_xyz)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_poscar)
+    bpy.types.TOPBAR_MT_file_import.append(menu_func_import_chgcar)
     pass
 
 
 def unregister():
-    # bpy.utils.unregister_class(CubeImport)
-    # bpy.utils.unregister_class(XYZImport)
-    # bpy.utils.unregister_class(POSCARImport)
-    # bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_cube)
-    # bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_xyz)
-    # bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_poscar)
+    bpy.utils.unregister_class(CubeImport)
+    bpy.utils.unregister_class(XYZImport)
+    bpy.utils.unregister_class(POSCARImport)
+    bpy.utils.unregister_class(CHGCARImport)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_cube)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_xyz)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_poscar)
+    bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_chgcar)
     pass
 
 
