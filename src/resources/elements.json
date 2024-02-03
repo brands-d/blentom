@@ -12,6 +12,12 @@
         "covalent radius": 0.6
     },
     {
+        "name": "Carbon",
+        "symbol": "C",
+        "radius": 0.35,
+        "covalent radius": 0.7
+    },
+    {
         "name": "Veritasiumium",
         "symbol": "X",
         "radius": 0.25,

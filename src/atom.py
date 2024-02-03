@@ -1,17 +1,18 @@
+from itertools import combinations, product
 from pathlib import Path
-from itertools import product, combinations
 
 import bpy
+from ase.calculators.vasp import VaspChargeDensity
 from ase.io import read
 from mathutils import Vector
 from numpy import diag, ndarray
 
 from .bond import Bond
 from .collection import Collection
+from .material import Material
 from .meshobject import MeshObject
 from .object import Object
 from .periodic_table import PeriodicTable
-from .material import Material
 
 
 class Atom(MeshObject):
@@ -21,10 +22,12 @@ class Atom(MeshObject):
     def __init__(self, element="X"):
         try:
             radius = PeriodicTable[element].radius
+            self.covalent_radius = PeriodicTable[element].covalent_radius
         except KeyError:
             radius = 1
+            self.covalent_radius = 1
 
-        bpy.ops.mesh.primitive_uv_sphere_add(radius=1)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=radius)
         super().__init__()
 
         self.element = element
@@ -90,15 +93,22 @@ class Atoms(MeshObject):
         for atom in atoms:
             self += Atom.ase(atom)
 
+        self.create_bonds()
         return self
 
     @classmethod
-    def read(cls, filename, name=None):
+    def read(cls, filename, name=None, format=None):
         filename = Path(filename)
         if name is None:
             name = filename.stem
 
-        return Atoms.ase(read(str(filename)), name=name)
+        if filename.stem == "CHGCAR" or (
+            isinstance(format, str) and format.lower in ("chgcar", "parchg")
+        ):
+            atoms = VaspChargeDensity(str(filename)).atoms[-1]
+            return Atoms.ase(atoms, name)
+        else:
+            return Atoms.ase(read(str(filename), format=format), name=name)
 
     def __add__(self, objects):
         if not isinstance(objects, (list, tuple)):
@@ -146,7 +156,7 @@ class Atoms(MeshObject):
             if atom.blender_object is None:
                 self._atoms.remove(atom)
 
-    def create_bonds(self, periodic=False):
+    def create_bonds(self, periodic=True):
         for atom_1, atom_2 in combinations(self.get("all"), 2):
             for x, y, z in (p for p in product((-1, 0, 1), repeat=3)):
                 shift = Vector(
@@ -156,7 +166,7 @@ class Atoms(MeshObject):
                 )
                 if (
                     Vector(atom_1.position) - Vector(atom_2.position) - Vector(shift)
-                ).length <= 1.5:
+                ).length <= atom_1.covalent_radius + atom_2.covalent_radius:
                     if (x, y, z) != (0, 0, 0) and periodic:
                         atom_2 = _DummyAtom(atom_2)
                         atom_2.position = Vector(atom_2.position) + shift
@@ -178,9 +188,7 @@ class Atoms(MeshObject):
             for x in repetitions[0]:
                 for y in repetitions[1]:
                     for z in repetitions[2]:
-                        if (x == 0 and y == 0 and z == 0) or (
-                            x == 1 and y == 1 and z == 1
-                        ):
+                        if x == 0 and y == 0 and z == 0:
                             continue
                         copy = self._new_instance_to_scene(
                             f"{self.name} - ({x:d}, {y:d}, {z:d})"
@@ -205,4 +213,5 @@ class Atoms(MeshObject):
 class _DummyAtom:
     def __init__(self, atom):
         self.position = atom.position
+        self.covalent_radius = atom.covalent_radius
         self.name = atom.name
