@@ -7,8 +7,15 @@ from .periodic_table import PeriodicTable
 
 
 class Material:
-    material_directory = Path(Path(__file__).parent / "resources" / "materials.blend")
-    fallback_file = Path(Path(__file__).parent / "resources" / "materials.json")
+    custom_material_directory = Path(
+        Path(__file__).parent / "resources" / "custom_materials.blend"
+    )
+    preset_material_directory = Path(
+        Path(__file__).parent / "resources" / "preset_materials.blend"
+    )
+    fallback_file = Path(
+        Path(__file__).parent / "resources" / "fallback_materials.json"
+    )
 
     def __init__(self, name):
         if len(name) <= 2:
@@ -22,17 +29,25 @@ class Material:
             try:
                 Material.load_preset_material(name)
             except KeyError:
-                print("Material not found in presets.")
+                pass
+
+        material = bpy.data.materials.get(name)
+        if material is None:
+            try:
+                Material.load_preset_material(name, custom=False)
+            except KeyError:
+                pass
 
         material = bpy.data.materials.get(name)
         if material is None:
             try:
                 Material.load_fallback_material(name)
             except KeyError:
-                print("Material not found in fallback catalog.")
+                pass
 
         material = bpy.data.materials.get(name)
         if material is None:
+            print("Material not found. Creating new material.")
             material = Material.create(name)
 
         self._material = material
@@ -56,11 +71,16 @@ class Material:
                 break
 
     @classmethod
-    def load_preset_material(cls, name):
+    def load_preset_material(cls, name, custom=True):
+        if custom:
+            directory = str(Material.custom_material_directory) + "/Material/"
+        else:
+            directory = str(Material.preset_material_directory) + "/Material/"
+
         bpy.ops.wm.append(
             filepath="/Material/" + name,
             filename=name,
-            directory=str(Material.material_directory) + "/Material/",
+            directory=directory,
         )
         material = bpy.data.materials.get(name)
 
