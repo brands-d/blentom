@@ -9,5 +9,6 @@ from .lib import reset, render
 from .material import Material
 from .object import Object
 from .camera import Camera
+from .plane import Plane
 
 __directory__ = Path(__file__)
