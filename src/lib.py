@@ -1,6 +1,11 @@
 import bpy
+from mathutils import Vector
+from ase.io.cube import read_cube_data
 
 from skimage.measure import marching_cubes as mc
+
+BOHR = 0.529177
+ANGSTROM = 1
 
 
 def reset():
@@ -53,3 +58,30 @@ def flip_normals(object):
         bpy.ops.object.mode_set(mode="EDIT")
         bpy.ops.mesh.normals_make_consistent(inside=False)
         bpy.ops.object.mode_set(mode="OBJECT")
+
+
+def read_cube(filename):
+    with open(filename, "r") as file:
+        lines = file.readlines()
+
+    aux = [None, None, None, None]
+    for i in range(0, 4):
+        units, *axis = lines[i + 2].split()
+        units = ANGSTROM if float(units) < 0 else BOHR
+        aux[i] = Vector([float(i) * units for i in axis])
+
+    origin, x, y, z = aux
+    """
+    units, *origin = lines[2].split()
+    units = ANGSTROM if units < 0 else BOHR
+    origin = Vector([float(i) * units for i in origin])
+    _, *x_axis = lines[3].split()
+    x_axis = Vector([float(x) * units for x in x_axis])
+    _, *y_axis = lines[4].split()
+    y_axis = Vector([float(y) * units for y in y_axis])
+    _, *z_axis = lines[5].split()
+    z_axis = Vector([float(z) * units for z in z_axis])
+    """
+    data, atoms = read_cube_data(filename)
+
+    return data, origin, (x, y, z), atoms.cell
