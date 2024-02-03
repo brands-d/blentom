@@ -23,6 +23,33 @@ def reset():
             bpy.data.collections.remove(collection)
 
 
+def render(filepath=None, show=True, mode="quality"):
+    original_display_type = bpy.context.preferences.view.render_display_type
+    if show:
+        bpy.context.preferences.view.render_display_type = "WINDOW"
+
+    engine = bpy.context.scene.render.engine
+    if mode.lower() in ["fast", "performance", "eevee"]:
+        bpy.context.scene.render.engine = "BLENDER_EEVEE"
+    elif mode.lower() in ["slow", "quality", "beautiful", "cycles"]:
+        bpy.context.scene.render.engine = "CYCLES"
+
+    if filepath is not None:
+        bpy.context.scene.render.filepath = str(filepath)
+        if show:
+            bpy.ops.render.render("INVOKE_DEFAULT", write_still=True)
+        else:
+            bpy.ops.render.render(write_still=True)
+    else:
+        if show:
+            bpy.ops.render.render("INVOKE_DEFAULT")
+        else:
+            bpy.ops.render.render()
+
+    bpy.context.scene.render.engine = engine
+    bpy.context.preferences.view.render_display_type = original_display_type
+
+
 def marching_cubes_VASP(density, unit_cell, name, level=None):
     vertices, faces, *_ = mc(density, level=level)
     vertices = [
@@ -85,17 +112,6 @@ def read_cube(filename):
         aux[i] = Vector([float(i) * units for i in axis])
 
     origin, x, y, z = aux
-    """
-    units, *origin = lines[2].split()
-    units = ANGSTROM if units < 0 else BOHR
-    origin = Vector([float(i) * units for i in origin])
-    _, *x_axis = lines[3].split()
-    x_axis = Vector([float(x) * units for x in x_axis])
-    _, *y_axis = lines[4].split()
-    y_axis = Vector([float(y) * units for y in y_axis])
-    _, *z_axis = lines[5].split()
-    z_axis = Vector([float(z) * units for z in z_axis])
-    """
     data, atoms = read_cube_data(filename)
 
     return data, origin, (x, y, z), atoms.cell
