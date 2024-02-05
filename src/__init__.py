@@ -11,5 +11,6 @@ from .object import Object
 from .camera import Camera
 from .plane import Plane
 from .light import Light
+from .asset import Asset
 
 __directory__ = Path(__file__)
