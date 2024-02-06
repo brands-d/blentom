@@ -16,6 +16,8 @@ class MeshObject(Object):
 
     @scale.setter
     def scale(self, scale):
+        if isinstance(scale, (int, float)):
+            scale = [scale] * 3
         self.blender_object.scale = Vector(scale)
 
     @property

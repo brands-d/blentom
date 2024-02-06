@@ -68,17 +68,17 @@ class Object:
         self.location = Vector(self.blender_object.location) + Vector(translation)
 
     def rotate(self, rotation, origin="local"):
-        if origin == "local":
+        if isinstance(origin, str) and origin == "local":
             bpy.ops.object.origin_set(type="ORIGIN_GEOMETRY")
             self.rotation = Vector(rotation) + Vector(self.rotation)
-        elif origin in ("global", "cursor"):
+        elif isinstance(origin, str) and origin in ("cursor"):
             bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
             self.rotation = Vector(rotation) + Vector(self.rotation)
             bpy.ops.object.origin_set(type="ORIGIN_GEOMETRY")
         else:
             previous_cursor_location = bpy.context.scene.cursor.location.copy()
 
-            if origin in ("world", "origin"):
+            if isinstance(origin, str) and origin in ("global", "world", "origin"):
                 bpy.context.scene.cursor.location = Vector((0, 0, 0))
             elif isinstance(origin, (tuple, list, Vector)):
                 bpy.context.scene.cursor.location = Vector(origin)
