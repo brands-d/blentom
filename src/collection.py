@@ -376,7 +376,6 @@ class Collection:
                 self._objects.remove(object)
 
         for object in self.collection.objects:
-
             if object.name not in [
                 object.blender_object.name for object in self._objects
             ]:

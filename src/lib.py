@@ -404,7 +404,7 @@ def get_viewport_engine():
     engine = bpy.context.scene.render.engine
     if engine == "CYCLES":
         return "cycles"
-    elif engine == "BLENDER_EEVEE":
+    elif engine in ("BLENDER_EEVEE", "BLENDER_EEVEE_NEXT"):
         return "eevee"
 
 
@@ -421,6 +421,9 @@ def set_viewport_engine(engine):
     if engine == "cycles":
         bpy.context.scene.render.engine = "CYCLES"
     elif engine == "eevee":
-        bpy.context.scene.render.engine = "BLENDER_EEVEE"
+        if bpy.app.version < (4,2,0):
+            bpy.context.scene.render.engine = "BLENDER_EEVEE"
+        else:
+            bpy.context.scene.render.engine = "BLENDER_EEVEE_NEXT"
     else:
         raise ValueError(f"Unknown render engine: {engine}")

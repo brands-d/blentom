@@ -64,7 +64,7 @@ class Atom(MeshObject):
         self.element = element
         self.name = element
         self.material = Material(
-            f'{PeriodicTable[element].name} - {Atom._get_preset("material",element)}'
+            f"{PeriodicTable[element].name} - {Atom._get_preset('material', element)}"
         )
         self.bonds = []
         Atom._atoms.append(self)
@@ -212,9 +212,9 @@ class Atoms(MeshObject):
         self.copies = []
 
         self.collection = Collection(name)
-        self.atoms_collection = Collection("Atoms")
+        self.atoms_collection = Collection(f"{name} - Atoms")
         self.collection.link(self.atoms_collection)
-        self.bonds_collection = Collection("Bonds")
+        self.bonds_collection = Collection(f"{name} - Bonds")
         self.collection.link(self.bonds_collection)
 
     @classmethod
