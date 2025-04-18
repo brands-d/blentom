@@ -1,43 +1,11 @@
+import bpy
+from sys import path, executable
+from subprocess import check_call
 from importlib.util import find_spec
-from subprocess import call
-from sys import executable, path
 from site import getusersitepackages
 
-install_required = False
-for requirement in ("ase", "skimage"):
-    package_name = requirement.split("==")[0]
-    if find_spec(package_name) is None:
-        install_required = True
-        break
-
-if install_required:
-    call([str(executable), "-m", "ensurepip", "--user"])
-    call([str(executable), "-m", "pip", "install", "--upgrade", "pip"])
-    call(
-        [
-            str(executable),
-            "-m",
-            "pip",
-            "install",
-            "--user",
-            "-r",
-            "requirements.txt",
-        ]
-    )
-
-path.append(getusersitepackages())
-
-
-#from .dependencies import install_dependencies
-#install_dependencies()
-
-import bpy  # type: ignore
-from . import auto_load
-
-from .src import *
-
 bl_info = {
-    "name": "blentom",
+    "name": "Blentom",
     "author": "Dominik Brandstetter",
     "email": "dominik.brandstetter@uni-graz.at",
     "license": "MIT",
@@ -48,6 +16,48 @@ bl_info = {
     "tracker_url": "https://github.com/brands-d/blentom/issues",
     "category": "Import-Export",
 }
+
+dependencies = (
+    {"name": "ase", "import_name": "ase", "version": ""},
+    {"name": "scikit-image", "import_name": "skimage", "version": ""},
+)
+
+
+def append_sitepackages_to_path():
+    path.append(getusersitepackages())
+
+
+def update_pip():
+    check_call([executable, "-m", "pip", "install", "--user", "--upgrade", "pip"])
+
+
+def install_dependency(dependency):
+    check_call(
+        [
+            executable,
+            "-m",
+            "pip",
+            "install",
+            "--user",
+            f"{dependency['name']}{dependency['version']}",
+        ]
+    )
+
+
+def check_dependencies():
+    first = True
+    for dependency in dependencies:
+        if not find_spec(dependency["import_name"]):
+            if first:
+                update_pip()
+                first = False
+            install_dependency(dependency)
+
+
+append_sitepackages_to_path()
+check_dependencies()
+
+from .src import *
 
 
 def register():
@@ -72,7 +82,3 @@ def unregister():
     bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_poscar)
     bpy.types.TOPBAR_MT_file_import.remove(menu_func_import_chgcar)
     pass
-
-
-#if __name__ == "__main__":
-#    auto_load.init()

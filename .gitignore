@@ -175,3 +175,4 @@ test*.*
 CHGCAR
 PROCAR
 !materials.blend
+presets_user.json

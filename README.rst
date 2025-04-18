@@ -11,10 +11,10 @@ Installation
 
 1. **Download the Addon**: Download the ``blentom.zip`` file from the `GitHub Page <https://github.com/brands-d/blentom/tree/v1.0.0b>`_.
 2. **Install in Blender**: Open Blender and navigate to ``Edit > Preferences > Add-ons > Install...``, then select the ``blentom.zip`` file [1]_.
-3. **Enable the Addon**: Search for 'Blentom' in the Add-ons tab and enable it [2]_.
+3. **Enable the Addon**: Search for 'Blentom' in the Add-ons tab and enable it if not already automatically enabled [2]_.
 
-.. [1] On Windows Blender has to be executed in administrator mode.
-.. [2] The activation takes some time because external dependencies are installed.
+.. [1] On Windows Blender sometimes has to be executed in administrator mode.
+.. [2] The activation takes some time the first time because external dependencies are installed.
 
 Usage
 -----
@@ -24,6 +24,8 @@ Usage
 Quickstart
 ~~~~~~~~~~
 
+If you just want to import common files use the appropriate entry under ``File > Import``.
+
 .. code-block:: python
 
    from blentom import Atoms, Camera
@@ -31,11 +33,6 @@ Quickstart
    Atoms.read("path/to/input")
    camera = Camera()
    camera.render("path/to/output.png")
-
-Import
-~~~~~~
-
-If you just want to import common files use the appropriate entry under ``File > Import``.
 
 Demo Files
 ~~~~~~~~~~
