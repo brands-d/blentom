@@ -1,0 +1,584 @@
+[
+    {
+        "name": "Actinium",
+        "symbol": "Ac",
+        "radius": 0.99,
+        "covalent radius": 1.98
+    },
+    {
+        "name": "Aluminium",
+        "symbol": "Al",
+        "radius": 0.605,
+        "covalent radius": 1.21
+    },
+    {
+        "name": "Americium",
+        "symbol": "Am",
+        "radius": 0.88,
+        "covalent radius": 1.76
+    },
+    {
+        "name": "Antimony",
+        "symbol": "Sb",
+        "radius": 0.705,
+        "covalent radius": 1.41
+    },
+    {
+        "name": "Argon",
+        "symbol": "Ar",
+        "radius": 0.5,
+        "covalent radius": 1.0
+    },
+    {
+        "name": "Arsenic",
+        "symbol": "As",
+        "radius": 0.595,
+        "covalent radius": 1.19
+    },
+    {
+        "name": "Astatine",
+        "symbol": "At",
+        "radius": 0.76,
+        "covalent radius": 1.52
+    },
+    {
+        "name": "Barium",
+        "symbol": "Ba",
+        "radius": 1.235,
+        "covalent radius": 2.47
+    },
+    {
+        "name": "Berkelium",
+        "symbol": "Bk",
+        "radius": 0.865,
+        "covalent radius": 1.73
+    },
+    {
+        "name": "Beryllium",
+        "symbol": "Be",
+        "radius": 0.495,
+        "covalent radius": 0.99
+    },
+    {
+        "name": "Bismuth",
+        "symbol": "Bi",
+        "radius": 0.74,
+        "covalent radius": 1.48
+    },
+    {
+        "name": "Boron",
+        "symbol": "B",
+        "radius": 0.415,
+        "covalent radius": 0.83
+    },
+    {
+        "name": "Bromine",
+        "symbol": "Br",
+        "radius": 0.59,
+        "covalent radius": 1.18
+    },
+    {
+        "name": "Cadmium",
+        "symbol": "Cd",
+        "radius": 0.755,
+        "covalent radius": 1.51
+    },
+    {
+        "name": "Caesium",
+        "symbol": "Cs",
+        "radius": 1.5,
+        "covalent radius": 3.0
+    },
+    {
+        "name": "Calcium",
+        "symbol": "Ca",
+        "radius": 0.865,
+        "covalent radius": 1.73
+    },
+    {
+        "name": "Californium",
+        "symbol": "Cf",
+        "radius": 0.855,
+        "covalent radius": 1.71
+    },
+    {
+        "name": "Carbon",
+        "symbol": "C",
+        "radius": 0.38,
+        "covalent radius": 0.76
+    },
+    {
+        "name": "Cerium",
+        "symbol": "Ce",
+        "radius": 0.91,
+        "covalent radius": 1.82
+    },
+    {
+        "name": "Chlorine",
+        "symbol": "Cl",
+        "radius": 0.515,
+        "covalent radius": 1.03
+    },
+    {
+        "name": "Chromium",
+        "symbol": "Cr",
+        "radius": 0.62,
+        "covalent radius": 1.24
+    },
+    {
+        "name": "Cobalt",
+        "symbol": "Co",
+        "radius": 0.605,
+        "covalent radius": 1.21
+    },
+    {
+        "name": "Copper",
+        "symbol": "Cu",
+        "radius": 0.68,
+        "covalent radius": 1.36
+    },
+    {
+        "name": "Curium",
+        "symbol": "Cm",
+        "radius": 0.86,
+        "covalent radius": 1.72
+    },
+    {
+        "name": "Dysprosium",
+        "symbol": "Dy",
+        "radius": 0.87,
+        "covalent radius": 1.74
+    },
+    {
+        "name": "Erbium",
+        "symbol": "Er",
+        "radius": 0.86,
+        "covalent radius": 1.72
+    },
+    {
+        "name": "Europium",
+        "symbol": "Eu",
+        "radius": 0.975,
+        "covalent radius": 1.95
+    },
+    {
+        "name": "Fluorine",
+        "symbol": "F",
+        "radius": 0.26,
+        "covalent radius": 0.52
+    },
+    {
+        "name": "Gadolinium",
+        "symbol": "Gd",
+        "radius": 0.89,
+        "covalent radius": 1.78
+    },
+    {
+        "name": "Gallium",
+        "symbol": "Ga",
+        "radius": 0.61,
+        "covalent radius": 1.22
+    },
+    {
+        "name": "Germanium",
+        "symbol": "Ge",
+        "radius": 0.6,
+        "covalent radius": 1.2
+    },
+    {
+        "name": "Gold",
+        "symbol": "Au",
+        "radius": 0.69,
+        "covalent radius": 1.38
+    },
+    {
+        "name": "Hafnium",
+        "symbol": "Hf",
+        "radius": 0.775,
+        "covalent radius": 1.55
+    },
+    {
+        "name": "Helium",
+        "symbol": "He",
+        "radius": 0.12,
+        "covalent radius": 0.24
+    },
+    {
+        "name": "Holmium",
+        "symbol": "Ho",
+        "radius": 0.865,
+        "covalent radius": 1.73
+    },
+    {
+        "name": "Hydrogen",
+        "symbol": "H",
+        "radius": 0.155,
+        "covalent radius": 0.31
+    },
+    {
+        "name": "Indium",
+        "symbol": "In",
+        "radius": 0.725,
+        "covalent radius": 1.45
+    },
+    {
+        "name": "Iodine",
+        "symbol": "I",
+        "radius": 0.69,
+        "covalent radius": 1.38
+    },
+    {
+        "name": "Iridium",
+        "symbol": "Ir",
+        "radius": 0.67,
+        "covalent radius": 1.34
+    },
+    {
+        "name": "Iron",
+        "symbol": "Fe",
+        "radius": 0.605,
+        "covalent radius": 1.21
+    },
+    {
+        "name": "Krypton",
+        "symbol": "Kr",
+        "radius": 0.58,
+        "covalent radius": 1.16
+    },
+    {
+        "name": "Lanthanum",
+        "symbol": "La",
+        "radius": 0.965,
+        "covalent radius": 1.93
+    },
+    {
+        "name": "Lead",
+        "symbol": "Pb",
+        "radius": 0.74,
+        "covalent radius": 1.48
+    },
+    {
+        "name": "Lithium",
+        "symbol": "Li",
+        "radius": 0.675,
+        "covalent radius": 1.35
+    },
+    {
+        "name": "Lutetium",
+        "symbol": "Lu",
+        "radius": 0.85,
+        "covalent radius": 1.7
+    },
+    {
+        "name": "Magnesium",
+        "symbol": "Mg",
+        "radius": 0.675,
+        "covalent radius": 1.35
+    },
+    {
+        "name": "Manganese",
+        "symbol": "Mn",
+        "radius": 0.63,
+        "covalent radius": 1.26
+    },
+    {
+        "name": "Mercury",
+        "symbol": "Hg",
+        "radius": 0.755,
+        "covalent radius": 1.51
+    },
+    {
+        "name": "Molybdenum",
+        "symbol": "Mo",
+        "radius": 0.765,
+        "covalent radius": 1.53
+    },
+    {
+        "name": "Neodymium",
+        "symbol": "Nd",
+        "radius": 0.92,
+        "covalent radius": 1.84
+    },
+    {
+        "name": "Neon",
+        "symbol": "Ne",
+        "radius": 0.29,
+        "covalent radius": 0.58
+    },
+    {
+        "name": "Neptunium",
+        "symbol": "Np",
+        "radius": 0.89,
+        "covalent radius": 1.78
+    },
+    {
+        "name": "Nickel",
+        "symbol": "Ni",
+        "radius": 0.6,
+        "covalent radius": 1.2
+    },
+    {
+        "name": "Niobium",
+        "symbol": "Nb",
+        "radius": 0.735,
+        "covalent radius": 1.47
+    },
+    {
+        "name": "Nitrogen",
+        "symbol": "N",
+        "radius": 0.365,
+        "covalent radius": 0.73
+    },
+    {
+        "name": "Osmium",
+        "symbol": "Os",
+        "radius": 0.7,
+        "covalent radius": 1.4
+    },
+    {
+        "name": "Oxygen",
+        "symbol": "O",
+        "radius": 0.33,
+        "covalent radius": 0.66
+    },
+    {
+        "name": "Palladium",
+        "symbol": "Pd",
+        "radius": 0.685,
+        "covalent radius": 1.37
+    },
+    {
+        "name": "Phosphorus",
+        "symbol": "P",
+        "radius": 0.54,
+        "covalent radius": 1.08
+    },
+    {
+        "name": "Platinum",
+        "symbol": "Pt",
+        "radius": 0.675,
+        "covalent radius": 1.35
+    },
+    {
+        "name": "Plutonium",
+        "symbol": "Pu",
+        "radius": 0.885,
+        "covalent radius": 1.77
+    },
+    {
+        "name": "Polonium",
+        "symbol": "Po",
+        "radius": 0.75,
+        "covalent radius": 1.5
+    },
+    {
+        "name": "Potassium",
+        "symbol": "K",
+        "radius": 1.115,
+        "covalent radius": 2.23
+    },
+    {
+        "name": "Praseodymium",
+        "symbol": "Pr",
+        "radius": 0.925,
+        "covalent radius": 1.85
+    },
+    {
+        "name": "Promethium",
+        "symbol": "Pm",
+        "radius": 0.915,
+        "covalent radius": 1.83
+    },
+    {
+        "name": "Protactinium",
+        "symbol": "Pa",
+        "radius": 0.945,
+        "covalent radius": 1.89
+    },
+    {
+        "name": "Radium",
+        "symbol": "Ra",
+        "radius": 1.06,
+        "covalent radius": 2.12
+    },
+    {
+        "name": "Radon",
+        "symbol": "Rn",
+        "radius": 0.71,
+        "covalent radius": 1.42
+    },
+    {
+        "name": "Rhenium",
+        "symbol": "Re",
+        "radius": 0.75,
+        "covalent radius": 1.5
+    },
+    {
+        "name": "Rhodium",
+        "symbol": "Rh",
+        "radius": 0.695,
+        "covalent radius": 1.39
+    },
+    {
+        "name": "Rubidium",
+        "symbol": "Rb",
+        "radius": 1.335,
+        "covalent radius": 2.67
+    },
+    {
+        "name": "Ruthenium",
+        "symbol": "Ru",
+        "radius": 0.73,
+        "covalent radius": 1.46
+    },
+    {
+        "name": "Samarium",
+        "symbol": "Sm",
+        "radius": 0.9,
+        "covalent radius": 1.8
+    },
+    {
+        "name": "Scandium",
+        "symbol": "Sc",
+        "radius": 0.72,
+        "covalent radius": 1.44
+    },
+    {
+        "name": "Selenium",
+        "symbol": "Se",
+        "radius": 0.6,
+        "covalent radius": 1.2
+    },
+    {
+        "name": "Silicon",
+        "symbol": "Si",
+        "radius": 0.585,
+        "covalent radius": 1.17
+    },
+    {
+        "name": "Silver",
+        "symbol": "Ag",
+        "radius": 0.72,
+        "covalent radius": 1.44
+    },
+    {
+        "name": "Sodium",
+        "symbol": "Na",
+        "radius": 0.93,
+        "covalent radius": 1.86
+    },
+    {
+        "name": "Strontium",
+        "symbol": "Sr",
+        "radius": 1.04,
+        "covalent radius": 2.08
+    },
+    {
+        "name": "Sulfur",
+        "symbol": "S",
+        "radius": 0.515,
+        "covalent radius": 1.03
+    },
+    {
+        "name": "Tantalum",
+        "symbol": "Ta",
+        "radius": 0.83,
+        "covalent radius": 1.66
+    },
+    {
+        "name": "Technetium",
+        "symbol": "Tc",
+        "radius": 0.715,
+        "covalent radius": 1.43
+    },
+    {
+        "name": "Tellurium",
+        "symbol": "Te",
+        "radius": 0.69,
+        "covalent radius": 1.38
+    },
+    {
+        "name": "Terbium",
+        "symbol": "Tb",
+        "radius": 0.88,
+        "covalent radius": 1.76
+    },
+    {
+        "name": "Thallium",
+        "symbol": "Tl",
+        "radius": 0.735,
+        "covalent radius": 1.47
+    },
+    {
+        "name": "Thorium",
+        "symbol": "Th",
+        "radius": 0.915,
+        "covalent radius": 1.83
+    },
+    {
+        "name": "Thulium",
+        "symbol": "Tm",
+        "radius": 0.855,
+        "covalent radius": 1.71
+    },
+    {
+        "name": "Tin",
+        "symbol": "Sn",
+        "radius": 0.705,
+        "covalent radius": 1.41
+    },
+    {
+        "name": "Titanium",
+        "symbol": "Ti",
+        "radius": 0.73,
+        "covalent radius": 1.46
+    },
+    {
+        "name": "Tungsten",
+        "symbol": "W",
+        "radius": 0.78,
+        "covalent radius": 1.56
+    },
+    {
+        "name": "Uranium",
+        "symbol": "U",
+        "radius": 0.905,
+        "covalent radius": 1.81
+    },
+    {
+        "name": "Vanadium",
+        "symbol": "V",
+        "radius": 0.71,
+        "covalent radius": 1.42
+    },
+    {
+        "name": "Xenon",
+        "symbol": "Xe",
+        "radius": 0.715,
+        "covalent radius": 1.43
+    },
+    {
+        "name": "Ytterbium",
+        "symbol": "Yb",
+        "radius": 0.94,
+        "covalent radius": 1.88
+    },
+    {
+        "name": "Yttrium",
+        "symbol": "Y",
+        "radius": 0.89,
+        "covalent radius": 1.78
+    },
+    {
+        "name": "Zinc",
+        "symbol": "Zn",
+        "radius": 0.625,
+        "covalent radius": 1.25
+    },
+    {
+        "name": "Zirconium",
+        "symbol": "Zr",
+        "radius": 0.77,
+        "covalent radius": 1.54
+    }
+]

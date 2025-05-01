@@ -1,0 +1,96 @@
+ATTRIBUTIONS
+
+This project utilizes the following third-party software:
+
+1.  **Atomic Simulation Environment**
+    * Source: https://gitlab.com/ase/ase
+    * License: GNU General Public License v3.0
+    * Full License Text: See ./blentom/wheels/licenses/ase/LICENSE
+    * Source Code: ./blentom/wheels/ase-3.25.0-py3-none-any.whl
+
+2.  **Blender**
+    * Source: https://www.blender.org/
+    * License: GNU General Public License v3.0
+    * Full License Text: See ./blentom/wheels/licenses/blender/LICENSE
+    * Source Code: https://github.com/blender/blender
+
+3.  **contourpy**
+    * Source: https://github.com/contourpy/contourpy
+    * License: 3-clause BSD
+    * Full License Text: See ./blentom/wheels/licenses/contourpy/LICENSE
+    * Source Code: ./blentom/wheels/contourpy-1.3.2-cp311-cp311-macosx_11_0_arm64.whl, ./blentom/wheels/contourpy-1.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/contourpy-1.3.2-cp311-cp311-win_amd64.whl
+
+4.  **cycler**
+    * Source: https://github.com/matplotlib/cycler
+    * License: 3-clause BSD
+    * Full License Text: See ./blentom/wheels/licenses/cycler/LICENSE
+    * Source Code: ./blentom/wheels/cycler-0.12.1-py3-none-any.whl
+
+5.  **fonttools**
+    * Source: https://github.com/fonttools/fonttools
+    * License: MIT
+    * Full License Text: See ./blentom/wheels/licenses/fonttools/LICENSE
+    * Source Code: ./blentom/wheels/fonttools-4.57.0-cp311-cp311-macosx_10_9_universal2.whl, ./blentom/wheels/fonttools-4.57.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/fonttools-4.57.0-cp311-cp311-win_amd64.whl
+
+6.  **kiwisolver**
+    * Source: https://github.com/nucleic/kiwi
+    * License: Revised BSD
+    * Full License Text: See ./blentom/wheels/licenses/kiwisolver/LICENSE
+    * Source Code: ./blentom/wheels/kiwisolver-1.4.8-cp311-cp311-macosx_11_0_arm64.whl, ./blentom/wheels/kiwisolver-1.4.8-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/kiwisolver-1.4.8-cp311-cp311-win_amd64.whl
+
+7.  **matplotlib**
+    * Source: https://github.com/matplotlib/matplotlib
+    * License: custom license
+    * Full License Text: See ./blentom/wheels/licenses/matplotlib/LICENSE
+    * Source Code: ./blentom/wheels/matplotlib-3.10.1-cp311-cp311-macosx_11_0_arm64.whl, ./blentom/wheels/matplotlib-3.10.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/matplotlib-3.10.1-cp311-cp311-win_amd64.whl
+
+8.  **numpy**
+    * Source: https://github.com/numpy/numpy
+    * License: custom license
+    * Full License Text: See ./blentom/wheels/licenses/numpy/LICENSE
+    * Source Code: ./blentom/wheels/numpy-2.2.5-cp311-cp311-macosx_11_0_arm64.whl, ./blentom/wheels/numpy-2.2.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/numpy-2.2.5-cp311-cp311-win_amd64.whl
+
+9.  **packaging**
+    * Source: https://github.com/pypa/packaging
+    * License: 2-clause BSD
+    * Full License Text: See ./blentom/wheels/licenses/packaging/LICENSE
+    * Source Code: ./blentom/wheels/packaging-25.0-py3-none-any.whl
+
+10. **pillow**
+    * Source: https://github.com/python-pillow/Pillow
+    * License: custom license
+    * Full License Text: See ./blentom/wheels/licenses/pillow/LICENSE
+    * Source Code: ./blentom/wheels/pillow-11.2.1-cp311-cp311-macosx_11_0_arm64.whl, ./blentom/wheels/pillow-11.2.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/pillow-11.2.1-cp311-cp311-win_amd64.whl
+
+11. **PyMCubes**
+    * Source: https://github.com/pmneila/PyMCubes
+    * License: 3-clause BSD
+    * Full License Text: See ./blentom/wheels/licenses/pymcubes/LICENSE
+    * Source Code: ./blentom/wheels/PyMCubes-0.1.6-cp311-cp311-macosx_11_0_arm64.whl, ./blentom/wheels/PyMCubes-0.1.6-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/PyMCubes-0.1.6-cp311-cp311-win_amd64.whl
+
+12. **pyparsing**
+    * Source: https://github.com/pyparsing/pyparsing
+    * License: MIT
+    * Full License Text: See ./blentom/wheels/licenses/pyparsing/LICENSE
+    * Source Code: ./blentom/wheels/pyparsing-3.2.3-py3-none-any.whl
+
+13. **python_dateutil**
+    * Source: https://github.com/dateutil/dateutil
+    * License: Apache v2.0
+    * Full License Text: See ./blentom/wheels/licenses/python-dateutil/LICENSE
+    * Source Code: ./blentom/wheels/python_dateutil-2.9.0.post0-py2.py3-none-any.whl
+
+14. **scipy**
+    * Source: https://github.com/scipy/scipy
+    * License: 3-clause BSD
+    * Full License Text: See ./blentom/wheels/licenses/scipy/LICENSE
+    * Source Code: ./blentom/wheels/scipy-1.15.2-cp311-cp311-macosx_12_0_arm64.whl, ./blentom/wheels/scipy-1.15.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl, ./blentom/wheels/scipy-1.15.2-cp311-cp311-win_amd64.whl
+
+15. **six**
+    * Source: https://github.com/benjaminp/six
+    * License: MIT
+    * Full License Text: See ./blentom/wheels/licenses/six/LICENSE
+    * Source Code: ./blentom/wheels/six-1.17.0-py2.py3-none-any.whl
+
+---
+Note: The inclusion of these licenses does not imply endorsement by the copyright holders of the included software.

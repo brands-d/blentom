@@ -1,0 +1,8 @@
+Download the necessary wheels by executing in src/blentom:
+
+python -m pip download ase pymcubes --dest .\blentom\wheels\ --only-binary=:all: --python-version=3.11 --platform=win_amd64
+python -m pip download ase pymcubes --dest .\blentom\wheels\ --only-binary=:all: --python-version=3.11 --platform=macosx_12_0_arm64
+python -m pip download ase pymcubes --dest .\blentom\wheels\ --only-binary=:all: --python-version=3.11 --platform=manylinux2014_x86_64
+
+Build with:
+make all

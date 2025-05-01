@@ -1,0 +1,128 @@
+{
+    "default": {
+        "isosurface": {
+            "remesh": true,
+            "voxel_size": 0.1,
+            "smooth": true,
+            "chargedensity": {
+                "material": "standard"
+            },
+            "wavefunction": {
+                "positive": {
+                    "material": "standard"
+                },
+                "negative": {
+                    "material": "standard"
+                }
+            }
+        },
+        "atoms": {
+            "material": "standard",
+            "size": 1,
+            "quality": {
+                "segments": 16,
+                "rings": 8,
+                "smooth": true,
+                "viewport": 0,
+                "render": 2
+            },
+            "Ag": {
+                "size": 2
+            }
+        },
+        "bonds": {
+            "no_bonds": [
+                [
+                    "Ag",
+                    "Ag"
+                ],
+                [
+                    "Cu",
+                    "Cu"
+                ],
+                [
+                    "Au",
+                    "Au"
+                ],
+                [
+                    "Pt",
+                    "Pt"
+                ]
+            ],
+            "factor": 1.2,
+            "thickness": 0.1,
+            "sides": 24,
+            "material": "step",
+            "smooth": true
+        },
+        "camera": {
+            "quality": "high",
+            "resolution": [
+                1080,
+                1080
+            ],
+            "focuslength": 35,
+            "orthographic_scale": 10,
+            "lens": "perspective",
+            "quality_presets": {
+                "low": {
+                    "engine": "eevee",
+                    "max_samples": 64
+                },
+                "medium": {
+                    "engine": "cycles",
+                    "noise": 0.1,
+                    "max_samples": 512,
+                    "denoise": true
+                },
+                "high": {
+                    "engine": "cycles",
+                    "noise": 0.01,
+                    "max_samples": 4096,
+                    "denoise": true
+                }
+            }
+        },
+        "light": {
+            "default_type": "sun",
+            "sun": {
+                "energy": 4,
+                "angle": 70,
+                "color": [
+                    1,
+                    1,
+                    1
+                ],
+                "shadows": true
+            },
+            "point": {
+                "energy": 350,
+                "radius": 5,
+                "color": [
+                    1,
+                    1,
+                    1
+                ],
+                "shadows": true
+            }
+        },
+        "blender": {
+            "viewport_engine": "cycles",
+            "viewport_noise": 0.1,
+            "viewport_max_samples": 64,
+            "viewport_denoise": true,
+            "wireframe": false
+        },
+        "animation": {
+            "interpolation": "linear",
+            "frame_multiplier": 1,
+            "fps": 24
+        },
+        "render": {
+            "render_window": true,
+            "transparent_background": true,
+            "compression": 100,
+            "color_depth": 8
+        }
+    }
+}
