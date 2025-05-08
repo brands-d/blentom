@@ -171,6 +171,12 @@ class Object:
         self.blender_object.select_set(True)
         bpy.context.view_layer.objects.active = self.blender_object
 
+    def hide(self, value):
+        """
+        Hides the object in the scene.
+        """
+        self.blender_object.hide_set(value)
+
     def move(self, translation):
         """
         Moves the object by the specified translation.

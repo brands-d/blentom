@@ -158,7 +158,7 @@ class Bond(MeshObject):
         )
 
     @classmethod
-    def _check_distance(cls, atom_a, atom_b):
+    def _check_distance(cls, atom_a, atom_b, shift=(0, 0, 0)):
         """
         Check if the distance between two atoms is within the bonding threshold.
 
@@ -171,7 +171,7 @@ class Bond(MeshObject):
         """
         factor = Preset.get("bonds.factor")
         position_a = Vector(atom_a.position)
-        position_b = Vector(atom_b.position)
+        position_b = Vector(atom_b.position) + Vector(shift)
         radius_a = atom_a.covalent_radius
         radius_b = atom_b.covalent_radius
 

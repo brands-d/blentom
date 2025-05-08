@@ -1,12 +1,12 @@
-from pathlib import Path
-
 import bpy
-from ase.calculators.vasp import VaspChargeDensity
-from numpy import diag, tile
+from math import radians
 
+
+from pathlib import Path
+from numpy import diag, tile, max
+from ase.calculators.vasp import VaspChargeDensity
 
 from .meshobject import MeshObject
-
 from ..utils.lib import (
     flip_normals,
     marching_cubes_gaussian,
@@ -28,6 +28,8 @@ class Isosurface(MeshObject):
         collection (Collection, optional): The collection to which the isosurface object belongs.
     """
 
+    items = []
+
     def __init__(self, isosurface_object, collection=None):
         self._isosurface_object = isosurface_object
 
@@ -38,8 +40,11 @@ class Isosurface(MeshObject):
         if Preset.get("isosurface.remesh"):
             self.remesh()
 
+        bpy.ops.blentom.add_isosurface_item(name=self.name, level=self.level / self.max)
+        Isosurface.items.append(self)
+
     @classmethod
-    def read(cls, filename, name=None, level=None, format=None, scale=None):
+    def read(cls, filename, name=None, level=None, format=None, scale=1):
         """
         Reads an isosurface from a file.
 
@@ -66,9 +71,19 @@ class Isosurface(MeshObject):
         if format == ".cube":
             return Isosurface(CubeIsosurface(filename, name, level, scale=scale))
         elif format.lower() in ("parchg", "chgcar", "vasp", ".vasp"):
-            return Isosurface(VaspIsosurface(filename, name, level))
+            return Isosurface(VaspIsosurface(filename, name, level, scale=scale))
         else:
             raise ValueError(f"Unsupported file format: {format}")
+
+    @property
+    def max(self):
+        """
+        The maximum value of the isosurface.
+
+        Returns:
+            float: The maximum value of the isosurface.
+        """
+        return self._isosurface_object.max
 
     @property
     def blender_object(self):
@@ -135,12 +150,23 @@ class Isosurface(MeshObject):
         """
         Remeshes the isosurface object.
         """
-        remesh_modifier = self.blender_object.modifiers.new(
-            name="Remesh", type="REMESH"
-        )
-        remesh_modifier.mode = "VOXEL"
-        remesh_modifier.use_smooth_shade = Preset.get("isosurface.smooth")
-        remesh_modifier.voxel_size = Preset.get("isosurface.voxel_size")
+        if Preset.get("isosurface.remesh.planar"):
+            planar_decimate_modifier = self.blender_object.modifiers.new(
+                name="Decimate", type="DECIMATE"
+            )
+            planar_decimate_modifier.decimate_type = "DISSOLVE"
+            planar_decimate_modifier.angle_limit = radians(
+                Preset.get("isosurface.remesh.planar_angle")
+            )
+
+        if Preset.get("isosurface.remesh.collapse"):
+            collapse_modifier = self.blender_object.modifiers.new(
+                name="Collapse", type="DECIMATE"
+            )
+            collapse_modifier.decimate_type = "COLLAPSE"
+            collapse_modifier.ratio = Preset.get("isosurface.remesh.collapse_ratio")
+
+        self.make_smooth()
 
     def repeat(self, repetitions):
         """
@@ -214,11 +240,12 @@ class VaspIsosurface:
         _create_mesh(): Creates the mesh for the isosurface.
     """
 
-    def __init__(self, filename, name, level=None, repetitions=(0, 0, 0)):
+    def __init__(self, filename, name, level=None, repetitions=(0, 0, 0), scale=1.0):
         self.name = name
         self.level = level
         self.repetitions = repetitions
         self.density = VaspChargeDensity(filename).chg[-1]
+        self.max = max(self.density)
         self.unit_cell = VaspChargeDensity(filename).atoms[-1].cell
         self.blender_object = self._create_mesh()
 
@@ -234,6 +261,8 @@ class VaspIsosurface:
             self.unit_cell = diag(repetitions) @ self.unit_cell
             self.density = tile(self.density, repetitions)
 
+        if self.level is None:
+            self.level = self.max / 10
         return marching_cubes_VASP(self.density, self.unit_cell, self.name, self.level)
 
 
@@ -261,18 +290,18 @@ class CubeIsosurface:
         _create_mesh(): Creates the mesh for the isosurface.
     """
 
-    def __init__(self, filename, name, level=None, repetitions=(0, 0, 0), scale=None):
+    def __init__(self, filename, name, level=None, repetitions=(0, 0, 0), scale=1.0):
         self.name = name
         self.level = level
         self.repetitions = repetitions
         self.density, self.origin, self.axes, *_ = read_cube(filename)
-        if scale is not None:
+        if scale != 1.0:
             self.density, self.axes = scale_density(
                 self.density, self.axes, scale=scale
             )
         self.blender_object = self._create_mesh(scale)
 
-    def _create_mesh(self, scale):
+    def _create_mesh(self, scale=1.0):
         """
         Creates the mesh for the isosurface.
 
@@ -417,20 +446,18 @@ class Wavefunction:
         read(cls, *args, **kwargs): Reads a wavefunction.
     """
 
-    def __init__(self, filename, *args, name=None, scale=None, **kwargs):
+    def __init__(self, filename, *args, name=None, scale=1.0, **kwargs):
         name = Path(filename).stem if name is None else name
         self.collection = Collection(name)
 
-        if "level" not in kwargs or kwargs["level"] is None:
-            kwargs["level"] = 0.05
-
         kwargs["name"] = f"{name} - Positive"
         self.positive = Isosurface.read(filename, *args, scale=scale, **kwargs)
-        kwargs["level"] = -self.positive.level
         self.positive.material = Material(
             f"Wavefunction (Positive) - {Preset.get('isosurface.wavefunction.negative.material')}"
         )
+
         kwargs["name"] = f"{name} - Negative"
+        kwargs["level"] = -self.positive.level
         self.negative = Isosurface.read(filename, *args, scale=scale, **kwargs)
         self.negative.material = Material(
             f"Wavefunction (Negative) - {Preset.get('isosurface.wavefunction.negative.material')}"

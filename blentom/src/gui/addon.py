@@ -1,6 +1,7 @@
 import bpy
 from bpy.types import Operator, AddonPreferences
 
+from sys import platform
 from subprocess import Popen
 
 from ..utils.preset import Preset
@@ -19,7 +20,16 @@ class ADDONPREFS_OT_open_default_directory(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        Popen(f'explorer "{__default_directory__}"')
+        if "linux" in platform:
+            # Linux
+            Popen(["xdg-open", __default_directory__])
+        elif "darwin" in platform:
+            # macOS
+            Popen(["open", __default_directory__])
+        else:
+            # Windows
+            Popen(["explorer", __default_directory__])
+
         return {"FINISHED"}
 
 
@@ -32,7 +42,16 @@ class ADDONPREFS_OT_open_user_directory(Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        Popen(f'explorer "{__user_directory__}"')
+        if "linux" in platform:
+            # Linux
+            Popen(["xdg-open", __user_directory__])
+        elif "darwin" in platform:
+            # macOS
+            Popen(["open", __user_directory__])
+        else:
+            # Windows
+            Popen(["explorer", __user_directory__])
+
         return {"FINISHED"}
 
 

@@ -63,7 +63,7 @@ class Atom(MeshObject):
         self.covalent_radius = PeriodicTable.get(element).covalent_radius
         self.element = element
         self.name = element
-        self.scale = radius
+        self.scale = radius * Atom._get_preset("scale", element)
         self.material = Material(
             f"{PeriodicTable.get(element).name} - {Atom._get_preset('material', element)}"
         )
@@ -219,7 +219,7 @@ class Atoms(MeshObject):
         self.collection.link(self.bonds_collection)
 
     @classmethod
-    def ase(cls, atoms, name=None, double_bonds=False):
+    def ase(cls, atoms, name=None, double_bonds=None):
         """
         Creates an Atoms instance from an ASE Atoms object.
 
@@ -271,7 +271,11 @@ class Atoms(MeshObject):
         if format is not None:
             format = format.lower()
 
-        if filename.stem == "CHGCAR" or format in ("chgcar", "parchg"):
+        if (
+            filename.stem == "CHGCAR"
+            or format in ("chgcar", "parchg")
+            or filename.suffix == ".vasp"
+        ):
             atoms = VaspChargeDensity(str(filename)).atoms[-1]
             return Atoms.ase(atoms, name, double_bonds=double_bonds)
         elif (
@@ -523,7 +527,7 @@ class Atoms(MeshObject):
             if atom.blender_object is None:
                 self._atoms.remove(atom)
 
-    def create_bonds(self, periodic=True, double_bonds=False):
+    def create_bonds(self, periodic=True, double_bonds=None):
         """
         Creates bonds between atoms in the atoms collection.
 
@@ -531,7 +535,8 @@ class Atoms(MeshObject):
             periodic (bool): Whether to consider periodic boundaries. Default: True.
             double_bonds (bool): Whether to display double and triple bonds.
         """
-        print(double_bonds)
+        if double_bonds is None:
+            double_bonds = Preset.get("bonds.double_bonds")
         exclude_bonds = Preset.get("bonds.no_bonds")
 
         if periodic and self.unit_cell is None:
@@ -554,11 +559,9 @@ class Atoms(MeshObject):
                     )
 
                     if (x, y, z) != (0, 0, 0):
-                        atom_b_dummy = _DummyAtom(atom_b)
-                        atom_b_dummy.position = Vector(atom_b.position) + shift
-                        self._create_bond(
-                            atom_a, atom_b_dummy, double_bonds=double_bonds
-                        )
+                        if Bond._check_distance(atom_a, atom_b, shift):
+                            atom_b_dummy = _DummyAtom(atom_b, shift)
+                            self += Bond(atom_a, atom_b_dummy, double_bonds)
                     else:
                         self._create_bond(atom_a, atom_b, double_bonds=double_bonds)
             else:
@@ -647,21 +650,28 @@ class Atoms(MeshObject):
         return instance
 
 
-class _DummyAtom:
+class _DummyAtom(Object):
     """
     Represents a dummy atom used for creating bonds in periodic systems.
     """
 
-    def __init__(self, atom):
+    def __init__(self, atom, shift):
         """
         Initializes a new instance of the _DummyAtom class.
 
         Args:
             atom (Atom): The original atom.
         """
+
+        super().__init__()
+        bpy.ops.object.empty_add(
+            type="PLAIN_AXES", location=Vector(atom.position) + Vector(shift)
+        )
+        self.blender_object = bpy.context.active_object
+        self.hide(True)
         self.atom = atom
+        self.shift = shift
         self.covalent_radius = atom.covalent_radius
-        self.position = atom.position
         self.name = atom.name
 
     @property
@@ -672,17 +682,17 @@ class _DummyAtom:
         Returns:
             Vector: Position of the atom.
         """
-        return Vector(self.atom.position) + Vector(self._shift)
+        return self.blender_object.location
 
-    @position.setter
-    def position(self, value):
-        """
-        Sets the position of the atom.
+    # @position.setter
+    # def position(self, value):
+    #     """
+    #     Sets the position of the atom.
 
-        Args:
-            value (Vector): The new position of the atom.
-        """
-        self._shift = Vector(value) - Vector(self.atom.position)
+    #     Args:
+    #         value (Vector): The new position of the atom.
+    #     """
+    #     self._shift = Vector(value) - Vector(self.atom.position)
 
     @property
     def material(self):
@@ -703,3 +713,13 @@ class _DummyAtom:
             list: A list of bonds associated with this atom.
         """
         return self.atom.bonds
+
+    # @property
+    # def blender_object(self):
+    #     """
+    #     Blender object associated with this atom.
+
+    #     Returns:
+    #         bpy.types.Object: The Blender object associated with this atom.
+    #     """
+    #     return self..blender_object

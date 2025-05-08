@@ -126,6 +126,7 @@ def reset_blender():
     set_viewport_max_samples(Preset.get("blender.viewport_max_samples"))
     set_viewport_denoise(Preset.get("blender.viewport_denoise"))
     set_wireframe(Preset.get("blender.wireframe"))
+    set_relationship_lines(Preset.get("blender.relationship_lines"))
 
 
 def set_viewport_noise(noise):
@@ -423,6 +424,12 @@ def interactive():
         console.locals.update(frame.f_back.f_locals)
     finally:
         del frame
+
+
+def set_relationship_lines(value=False):
+    bpy.data.screens["Layout"].areas[3].spaces[
+        0
+    ].overlay.show_relationship_lines = False
 
 
 def get_viewport_engine():

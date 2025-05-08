@@ -1,7 +1,12 @@
 {
     "default": {
         "isosurface": {
-            "remesh": true,
+            "remesh": {
+                "planar": true,
+                "planar_angle": 4,
+                "collapse": true,
+                "collapse_ratio": 0.25
+            },
             "voxel_size": 0.1,
             "smooth": true,
             "chargedensity": {
@@ -18,7 +23,7 @@
         },
         "atoms": {
             "material": "standard",
-            "size": 1,
+            "scale": 1,
             "quality": {
                 "segments": 16,
                 "rings": 8,
@@ -27,7 +32,7 @@
                 "render": 2
             },
             "Ag": {
-                "size": 2
+                "scale": 2
             }
         },
         "bonds": {
@@ -53,7 +58,8 @@
             "thickness": 0.1,
             "sides": 24,
             "material": "step",
-            "smooth": true
+            "smooth": true,
+            "double_bonds": false
         },
         "camera": {
             "quality": "high",
@@ -111,7 +117,8 @@
             "viewport_noise": 0.1,
             "viewport_max_samples": 64,
             "viewport_denoise": true,
-            "wireframe": false
+            "wireframe": false,
+            "relationship_lines": false
         },
         "animation": {
             "interpolation": "linear",

@@ -109,8 +109,8 @@ class Preset:
             preset (str | None): The preset for which the property should be set. Default: Currently loaded preset.
 
         Examples:
-            >>> # Sets the size for carbon atoms in the "default" preset
-            >>> Preset.set("atoms.carbon.size", 1.2, preset="default")
+            >>> # Sets the scale for carbon atoms in the "default" preset
+            >>> Preset.set("atoms.carbon.scale", 1.2, preset="default")
         """
         preset = Preset.preset if preset is None else preset
         user_preset = Preset._read(user=True)
