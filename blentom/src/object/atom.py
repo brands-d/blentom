@@ -242,8 +242,8 @@ class Atoms(MeshObject):
         self.unit_cell = atoms.cell[:]
         for atom in atoms:
             self += Atom.ase(atom)
-
         self.create_bonds(double_bonds=double_bonds)
+
         return self
 
     @classmethod
@@ -314,10 +314,11 @@ class Atoms(MeshObject):
         """
 
         seen_elements = []
+        seen_bonds = []
         if not isinstance(objects, (list, tuple)):
             objects = (objects,)
         for object in objects:
-            if isinstance(object, Atom):
+            if isinstance(object, Atom) or isinstance(object, _DummyAtom):
                 collection_name = f"{self.name} - {object.element}"
                 collection = Collection(collection_name)
                 _ = collection + object
@@ -326,7 +327,14 @@ class Atoms(MeshObject):
                     seen_elements.append(object.element)
                 self._atoms.append(object)
             elif isinstance(object, Bond):
-                _ = self.bonds_collection + object
+                collection_name = (
+                    f"{self.name} - {object.atom_a.element}-{object.atom_b.element}"
+                )
+                collection = Collection(collection_name)
+                _ = collection + object
+                if (object.atom_a.element, object.atom_b.element) not in seen_elements:
+                    self.bonds_collection.link(collection)
+                    seen_bonds.append((object.atom_a.element, object.atom_b.element))
 
         return self
 
@@ -552,15 +560,15 @@ class Atoms(MeshObject):
 
             if periodic:
                 for x, y, z in (p for p in product((-1, 0, 1), repeat=3)):
-                    shift = Vector(
-                        x * self.unit_cell[0]
-                        + y * self.unit_cell[1]
-                        + z * self.unit_cell[2]
-                    )
-
                     if (x, y, z) != (0, 0, 0):
+                        shift = Vector(
+                            x * self.unit_cell[0]
+                            + y * self.unit_cell[1]
+                            + z * self.unit_cell[2]
+                        )
                         if Bond._check_distance(atom_a, atom_b, shift):
                             atom_b_dummy = _DummyAtom(atom_b, shift)
+                            self += atom_b_dummy
                             self += Bond(atom_a, atom_b_dummy, double_bonds)
                     else:
                         self._create_bond(atom_a, atom_b, double_bonds=double_bonds)
@@ -586,7 +594,6 @@ class Atoms(MeshObject):
         Args:
             repetitions (tuple[int, int, int]): The number of repetitions in each direction.
         """
-
         if repetitions == (0, 0, 0):
             return
         else:
@@ -673,6 +680,17 @@ class _DummyAtom(Object):
         self.shift = shift
         self.covalent_radius = atom.covalent_radius
         self.name = atom.name
+        self.scale = atom.scale
+
+    @property
+    def scale(self):
+        return list(self.blender_object.scale)
+
+    @scale.setter
+    def scale(self, scale):
+        if isinstance(scale, (int, float)):
+            scale = [scale] * 3
+        self.blender_object.scale = [s * a for s, a in zip(self.scale, scale)]
 
     @property
     def position(self):
@@ -683,16 +701,6 @@ class _DummyAtom(Object):
             Vector: Position of the atom.
         """
         return self.blender_object.location
-
-    # @position.setter
-    # def position(self, value):
-    #     """
-    #     Sets the position of the atom.
-
-    #     Args:
-    #         value (Vector): The new position of the atom.
-    #     """
-    #     self._shift = Vector(value) - Vector(self.atom.position)
 
     @property
     def material(self):
@@ -714,12 +722,12 @@ class _DummyAtom(Object):
         """
         return self.atom.bonds
 
-    # @property
-    # def blender_object(self):
-    #     """
-    #     Blender object associated with this atom.
+    @property
+    def element(self):
+        """
+        Returns the element of the atom.
 
-    #     Returns:
-    #         bpy.types.Object: The Blender object associated with this atom.
-    #     """
-    #     return self..blender_object
+        Returns:
+            str: The element of the atom.
+        """
+        return self.atom.element
