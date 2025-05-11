@@ -299,6 +299,7 @@ class CubeIsosurface:
             self.density, self.axes = scale_density(
                 self.density, self.axes, scale=scale
             )
+        self.max = max(self.density)
         self.blender_object = self._create_mesh(scale)
 
     def _create_mesh(self, scale=1.0):
@@ -311,6 +312,9 @@ class CubeIsosurface:
         if self.repetitions != (0, 0, 0):
             repetitions = tuple([repetition + 1 for repetition in self.repetitions])
             self.density = tile(self.density, repetitions)
+
+        if self.level is None:
+            self.level = self.max / 10
 
         return marching_cubes_gaussian(
             self.density, self.origin, self.axes, self.name, self.level
