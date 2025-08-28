@@ -27,7 +27,7 @@ operators = [
 ]
 
 panels = [
-    ItemPanel,
+    # ItemPanel,
     # PresetPanel,
     # CurrentPresetPanel,
 ]
@@ -48,8 +48,8 @@ def register():
         register_class(cls)
     for cls in operators:
         register_class(cls)
-    for cls in panels:
-        register_class(cls)
+    # for cls in panels:
+    #    register_class(cls)
     for cls in other:
         register_class(cls)
     for cls in menu_items:
