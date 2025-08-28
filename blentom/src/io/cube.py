@@ -42,6 +42,15 @@ class CubeImport(Operator, ImportHelper):
         step=0.5,
         default=2,
     )
+    level: FloatProperty(
+        name="Level",
+        description="Isovalue.",
+        precision=4,
+        min=0,
+        max=1,
+        step=0.01,
+        default=0.1,
+    )
 
     def execute(self, _):
         """
@@ -54,9 +63,9 @@ class CubeImport(Operator, ImportHelper):
 
         if self.load_density:
             if self.scale != 1:
-                Wavefunction.read(self.filepath, scale=self.scale)
+                Wavefunction.read(self.filepath, scale=self.scale, level=self.level)
             else:
-                Wavefunction.read(self.filepath)
+                Wavefunction.read(self.filepath, level=self.level)
 
         return {"FINISHED"}
 
@@ -74,6 +83,7 @@ class CubeImport(Operator, ImportHelper):
         box = self.layout.box()
         box.prop(self, "load_density", text="Load", toggle=False)
         box.prop(self, "scale")
+        box.prop(self, "level")
 
 
 def menu_func_import_cube(self, *args, **kwargs):

@@ -35,6 +35,15 @@ class DatabaseImport(Operator):
         step=0.5,
         default=2,
     )
+    level: FloatProperty(
+        name="Level",
+        description="Isovalue.",
+        precision=4,
+        min=0,
+        max=1,
+        step=0.01,
+        default=0.1,
+    )
 
     def draw(self, context):
         layout = self.layout
@@ -52,6 +61,7 @@ class DatabaseImport(Operator):
         box = self.layout.box()
         box.prop(self, "load_density", text="Load", toggle=False)
         box.prop(self, "scale")
+        box.prop(self, "level")
 
     def execute(self, context):
         if hasattr(bpy.app, "online_access") and not bpy.app.online_access:
@@ -82,6 +92,7 @@ class DatabaseImport(Operator):
                 name=content[name_start:name_end],
                 format=".cube",
                 scale=scale,
+                level=self.level,
             )
 
         mock_file.close()

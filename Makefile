@@ -2,7 +2,7 @@ ZIPS = macos linux windows
 BUILDDIR = build
 TMPDIR = $(BUILDDIR)/tmp
 SRCDIR = blentom
-VERSION = 3.1.4
+VERSION = 3.1.5
 
 .PHONY: all clean
 
