@@ -47,7 +47,7 @@ Script
 
 .. code-block:: python
 
-   from blentom import Atoms, Camera
+   from bl_ext.user_default.blentom import Atoms, Camera
 
    Atoms.read("path/to/input")
    camera = Camera()

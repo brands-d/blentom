@@ -1,4 +1,4 @@
-import console_python
+import _console_python
 from inspect import currentframe
 
 import bpy
@@ -6,7 +6,6 @@ import bmesh
 from mathutils import Vector
 
 import numpy as np
-from mcubes import marching_cubes
 from ase.io.cube import read_cube_data
 from scipy.interpolate import RegularGridInterpolator
 
@@ -203,6 +202,10 @@ def set_wireframe(wireframe):
                         if space.type == "VIEW_3D":
                             space.overlay.wireframe_opacity = int(wireframe)
                             space.overlay.show_wireframes = True
+
+
+def marching_cubes():
+    pass
 
 
 def marching_cubes_VASP(density, unit_cell, name, level=None):
@@ -409,7 +412,7 @@ def get_console():
             if area.type == "CONSOLE":
                 for region in area.regions:
                     if region.type == "WINDOW":
-                        console = console_python.get_console(hash(region))
+                        console = _console_python.get_console(hash(region))
                         if console:
                             return console[0]
 
