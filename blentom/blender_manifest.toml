@@ -7,7 +7,7 @@ maintainer = "Dominik Brandstetter <dominik.brandstetter@uni-graz.at>"
 website = "https://github.com/brands-d/blentom/issues"
 license = ["GPL-3.0-or-later"]
 type = "add-on"
-blender_version_min = "5.1.0"
+blender_version_min = "5.0.0"
 
 [permissions]
 network = "Needed to download molecular orbitals from the database"
@@ -15,4 +15,4 @@ files = "Import of the atomic data"
 
 [build]
 paths_exclude_pattern = ["__pycache__/", "/.git/", "/*.zip", "build.py", "requirements.txt", "Makefile"]
-python_version = "3.13"
+python_version = "3.14"

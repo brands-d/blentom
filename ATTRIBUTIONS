@@ -77,6 +77,9 @@ This project utilizes the following third-party software:
 19. **typing_extensions**
     * Source: https://github.com/python/typing_extensions
     * License: custom
-    
+
+20. **numpy**
+    * Source: https://github.com/numpy/numpy
+    * License: BSD
 ---
 Note: The inclusion of these licenses does not imply endorsement by the copyright holders of the included software.

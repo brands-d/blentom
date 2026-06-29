@@ -22,7 +22,7 @@ Features
 Installation
 ------------
 
-Clone the lastest version of this repository and run the build.py script to create a zip file that can be installed in Blender.
+Clone the lastest version of this repository and run the build.py script to create a zip file that can be installed in Blender. If the Blender version or the Python version inside Blenders differs update the blentom/blender_manifest.toml file accordingly.
 
 Usage
 -----

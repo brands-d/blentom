@@ -9,16 +9,6 @@ from pathlib import Path
 ROOT_DIR = Path(__file__).parent.resolve()
 ADDON_DIR = ROOT_DIR / "blentom"
 BUILD_DIR = ROOT_DIR / "build"
-BLENDER_PROVIDED = {
-    "numpy",
-    "pyopenvdb",
-    "requests",
-    "certifi",
-    "charset-normalizer",
-    "idna",
-    "urllib3",
-}
-
 
 def extract_license(pkg_name: str, wheels_file: Path, license_dir: Path):
     with zipfile.ZipFile(wheels_file, "r") as z:
@@ -90,10 +80,7 @@ def main():
 
     for w in (wheels_dir).glob("*.whl"):
         pkg = w.name.split("-")[0].lower()
-        if pkg in BLENDER_PROVIDED:
-            w.unlink()
-        else:
-            extract_license(pkg, w, license_dir)
+        extract_license(pkg, w, license_dir)
 
     # 2. Copy source and files
     shutil.copytree(ADDON_DIR, BUILD_DIR, dirs_exist_ok=True)
@@ -113,7 +100,7 @@ def main():
             if f.is_file():
                 z.write(f, f.relative_to(BUILD_DIR))
     shutil.rmtree(BUILD_DIR)
-    print(f"Bundled: {zip_path.name}")
+    print(f"Bundled: {zip_path}")
 
 
 if __name__ == "__main__":
