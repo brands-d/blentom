@@ -8,6 +8,7 @@ from mathutils import Vector
 import numpy as np
 from ase.io.cube import read_cube_data
 from scipy.interpolate import RegularGridInterpolator
+from skimage import measure
 
 from .preset import Preset
 from .animation import Animation
@@ -204,8 +205,16 @@ def set_wireframe(wireframe):
                             space.overlay.show_wireframes = True
 
 
-def marching_cubes():
-    pass
+def marching_cubes(density, level):
+    """
+    Uses scikit-image to generate the isosurface.
+    """
+    # spacing is set to (1, 1, 1) to match your current logic;
+    # scaling is handled by your existing matrix math.
+    verts, faces, normals, values = measure.marching_cubes(
+        density, level=level, spacing=(1, 1, 1)
+    )
+    return verts, faces
 
 
 def marching_cubes_VASP(density, unit_cell, name, level=None):
